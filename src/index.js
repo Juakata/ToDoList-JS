@@ -12,11 +12,10 @@ const Project = (title, description, dueDate, priority, checklist) => {
   }
 }
 
-const ToDo = (content) => {
+const ToDo = (content, completed) => {
   return {
-    content
-    // completed,
-    // priority
+    content,
+    completed
   }
 }
 
@@ -52,12 +51,25 @@ function addProject() {
 function renderInfo(event) {
   const id = event.target.id.split("-").splice(-1);
   const list = document.getElementById("project__list");
+  let tasks = "";
+  let priority = "";
+
+  projects[id].checklist.forEach(element => {
+    tasks += `<h3>${element.content}</h3>`;
+  });
+  if(projects[id].priority) {
+    priority = "Top";
+  } else {
+    priority = "Normal";
+  }
   list.innerHTML = `
-    <h2>${projects[id].title}</h2>
-    <h3>${projects[id].description}</h2>
-    <h4>${projects[id].dueDate}</h2>
+    <h2>Title: ${projects[id].title}</h2>
+    <h2>Description: ${projects[id].description}</h2>
+    <h2>Deadline: ${projects[id].dueDate}</h2>
+    <h2>Priority: ${priority}</h2>
+    <div>${tasks}</div>
     <button type="button" id="addTask-${id}">Add Task</button>
-  `
+  `;
   const addNew = document.getElementById(`addTask-${id}`);
   addNew.addEventListener("click", showTaskForm, false);
 }
@@ -67,20 +79,23 @@ function addTask(event) {
   const taskFormData = {
     task: document.getElementById("task")
   }
-  const task = ToDo(taskFormData.task.value);
+  const task = ToDo(taskFormData.task.value, false);
   projects[id].checklist.push(task);
+  renderInfo(event);
 }
 
 function showTaskForm(event) {
   const id = event.target.id.split("-").slice(-1);
-  const taskForm = document.getElementById("task__form");
-  taskForm.style.display = "block";
-  const formBtn = document.createElement("button");
-  formBtn.id = `btn-${id}`;
-  formBtn.setAttribute("type", "button");
-  formBtn.innerText = "Add"
-  taskForm.appendChild(formBtn);
-  formBtn.addEventListener("click", addTask, false);
+  if(!document.getElementById(`btn-${id}`)) {
+    const taskForm = document.getElementById("task__form");
+    taskForm.style.display = "block";
+    const formBtn = document.createElement("button");
+    formBtn.id = `btn-${id}`;
+    formBtn.setAttribute("type", "button");
+    formBtn.innerText = "Add"
+    taskForm.appendChild(formBtn);
+    formBtn.addEventListener("click", addTask, false);
+  }
 }
 
 function renderProjects() {
@@ -97,8 +112,3 @@ function renderProjects() {
   });
 
 }
-
-
-
-
-
