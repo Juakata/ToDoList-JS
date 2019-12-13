@@ -45,6 +45,18 @@ nav {
 
 #task__form {
   display: none;
+  width: 20%;
+  background: white;
+  position: fixed;
+  z-index: 20;
+  box-shadow: 1px 1px 5px black;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 30%;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
 }
 
 #newProject {
@@ -64,7 +76,7 @@ nav {
   box-shadow: -2px -2px 1px #54a5e8;
 }
 
-#btn-close {
+#btn-close, .btn-close-form {
   border: 1px solid red;
   background: red;
   color: white;
@@ -79,7 +91,7 @@ nav {
   background: none;
 }
 
-#project__form-btn {
+#project__form-btn, .btn-form {
   border: 1px solid green;
   background: green;
   color: white;
@@ -109,6 +121,28 @@ nav {
 #project__list {
   position: relative;
   z-index: 1;
+  padding: 20px;
+}
+
+#p-title {
+  text-align: center;
+  background: #fc7703;
+  color: white;
+  padding: 10px;
+}
+
+.btn-close-form:hover {
+  color: red;
+  background: none;
+}
+
+.btn-form {
+  margin-right: 5px;
+}
+
+.btn-form:hover {
+  color: green;
+  background: none;
 }
 
 .sidemenu {
@@ -183,6 +217,10 @@ nav {
   text-align: center;
 }
 
+.list-tasks{
+  margin-left: 20px;
+}
+
 @media(max-width: 1410px) {
   #project__form{
     width: 35%;
@@ -192,6 +230,10 @@ nav {
 @media(max-width: 935px) {
   #project__form{
     width: 45%;
+  }
+
+  #task__form {
+    width: 40%;
   }
 }
 
@@ -204,5 +246,9 @@ nav {
 @media(max-width: 590px) {
   #project__form{
     width: 65%;
+  }
+
+  #task__form {
+    width: 50%;
   }
 }

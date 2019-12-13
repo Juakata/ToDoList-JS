@@ -2,6 +2,8 @@ import './main.css';
 
 let projects = [];
 
+
+
 const Project = (title, description, dueDate, priority, checklist) => {
   return {
     title,
@@ -18,6 +20,11 @@ const ToDo = (content, completed) => {
     completed
   }
 }
+
+const p = Project("Project 1", "Description of project 1", "10-10-2019", false, []);
+const p2 = Project("Project 2", "Description of project 2", "08-08-2019", true, []);
+projects.push(p);
+projects.push(p2);
 
 const newProject = document.getElementById("newProject");
 newProject.addEventListener("click", renderForm, false);
@@ -63,12 +70,12 @@ function renderInfo(event) {
     priority = "Normal";
   }
   list.innerHTML = `
-    <h2>Title: ${projects[id].title}</h2>
+    <h2 id="p-title">${projects[id].title}</h2>
     <h2>Description: ${projects[id].description}</h2>
     <h2>Deadline: ${projects[id].dueDate}</h2>
     <h2>Priority: ${priority}</h2>
-    <div>${tasks}</div>
-    <button type="button" id="addTask-${id}">Add Task</button>
+    <div class="list-tasks">${tasks}</div>
+    <button type="button" class="btn-form" id="addTask-${id}">Add Task</button>
   `;
   const addNew = document.getElementById(`addTask-${id}`);
   addNew.addEventListener("click", showTaskForm, false);
@@ -81,20 +88,38 @@ function addTask(event) {
   }
   const task = ToDo(taskFormData.task.value, false);
   projects[id].checklist.push(task);
+  closeTaskForm(event);
   renderInfo(event);
+}
+
+function closeTaskForm(event) {
+  const id = event.target.id.split("-").slice(-1);
+  const taskForm = document.getElementById("task__form");
+  taskForm.style.display = "none";
+  taskForm.removeChild(document.getElementById(`btn-${id}`));
+  taskForm.removeChild(document.getElementById(`btnClose-${id}`));
+  document.getElementById('task').value = '';
 }
 
 function showTaskForm(event) {
   const id = event.target.id.split("-").slice(-1);
+  const taskForm = document.getElementById("task__form");
+  taskForm.style.display = "block";
   if(!document.getElementById(`btn-${id}`)) {
-    const taskForm = document.getElementById("task__form");
-    taskForm.style.display = "block";
     const formBtn = document.createElement("button");
+    const closeBtn = document.createElement("button");
     formBtn.id = `btn-${id}`;
+    closeBtn.id = `btnClose-${id}`;
+    formBtn.classList.add('btn-form');
+    closeBtn.classList.add('btn-close-form');
     formBtn.setAttribute("type", "button");
-    formBtn.innerText = "Add"
+    closeBtn.setAttribute("type", "button");
+    formBtn.innerText = "Add";
+    closeBtn.innerText = "Cancel";
     taskForm.appendChild(formBtn);
+    taskForm.appendChild(closeBtn);
     formBtn.addEventListener("click", addTask, false);
+    closeBtn.addEventListener('click', closeTaskForm.bind(), false);
   }
 }
 
@@ -132,5 +157,7 @@ function renderProjects() {
   });
 
 }
+
+renderProjects();
 
 document.getElementById('btn-close').addEventListener('click', hideForm, false);
