@@ -98,17 +98,39 @@ function showTaskForm(event) {
   }
 }
 
+function deleteProject(event) {
+  const id = event.target.id.split("-").slice(-1);
+  projects.splice(id, 1);
+  renderProjects();
+  document.getElementById("project__list").innerHTML = '';
+}
+
 function renderProjects() {
   const container = document.getElementById("project");
 
   container.innerHTML = "";
+  container.innerHTML = `<h1>Projects</h1>`;
+  container.innerHTML += `<nav>
+    <ul id="projects-menu">
+    </ul>
+  </nav>`;
   projects.forEach((project, i) => {
+    const li = document.createElement('li');
     const span = document.createElement('span');
     span.id = `project-${i}`;
     const text = document.createTextNode(project.title);
     span.appendChild(text);
+    const icon = document.createElement('i');
+    icon.classList.add('fa');
+    icon.classList.add('fa-trash');
+    icon.id = `i-delete-${i}`;
+    icon.addEventListener("click", deleteProject.bind(), false);
     span.addEventListener("click", renderInfo.bind(), false);
-    container.appendChild(span);
+    document.getElementById('projects-menu').appendChild(li);
+    li.appendChild(span);
+    li.appendChild(icon);
   });
 
 }
+
+document.getElementById('btn-close').addEventListener('click', hideForm, false);
