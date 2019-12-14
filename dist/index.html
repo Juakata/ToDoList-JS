@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
   <title>To Do List</title>
 </head>
 
@@ -17,40 +18,40 @@
     <div id="project__list"></div>
 
 
-      <form id="project__form">
-        <div class="form-container">
-          <div class="form-element">
-            <label for="title">Title:</label>
-            <input type="text" id="title" required>
-          </div>
-          <div class="form-element">
-            <label for="description">Description:</label>
-            <input type="text" id="description" required>
-          </div>
-          <div class="form-element">
-            <label for="dueDate">Due date:</label>
-            <input type="date" id="dueDate" required>
-          </div>
-          <div class="form-element">
-            <label>Priority:</label>
-            <label for="high-priority">High</label>
-            <input type="radio" name="priority" id="top-priority">
-            <label for="normal-priority">Normal</label>
-            <input type="radio" name="priority" id="normal-priority" checked>
-          </div>
-          <div class="form-element center">
-            <button id="project__form-btn" type="button">Create Project</button>
-            <button id="btn-close" type="button">Cancel</button>
-          </div>
-        </div>
-      </form>
-
-      <form id="task__form">
+    <form id="project__form">
+      <div class="form-container">
         <div class="form-element">
-          <label for="task">Add new task</label>
-          <input type="text" id="task">
+          <label for="title">Title:</label>
+          <input type="text" id="title" required>
         </div>
-      </form>
+        <div class="form-element">
+          <label for="description">Description:</label>
+          <input type="text" id="description" required>
+        </div>
+        <div class="form-element">
+          <label for="dueDate">Due date:</label>
+          <input type="date" id="dueDate" required>
+        </div>
+        <div class="form-element">
+          <label>Priority:</label>
+          <label for="high-priority">High</label>
+          <input type="radio" name="priority" id="top-priority">
+          <label for="normal-priority">Normal</label>
+          <input type="radio" name="priority" id="normal-priority" checked>
+        </div>
+        <div class="form-element center">
+          <button id="project__form-btn" type="button">Create Project</button>
+          <button id="btn-close" type="button">Cancel</button>
+        </div>
+      </div>
+    </form>
+
+    <form id="task__form">
+      <div class="form-element">
+        <label for="task">Add new task</label>
+        <input type="text" id="task">
+      </div>
+    </form>
   </main>
   <script src="main.js"></script>
 </body>

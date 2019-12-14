@@ -7,6 +7,7 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Lato', sans-serif;
 }
 
 header {
@@ -129,6 +130,25 @@ nav {
   background: #fc7703;
   color: white;
   padding: 10px;
+}
+
+#priority-btn {
+
+  padding: 10px 20px;
+}
+
+#priority-btn:focus {
+  outline: none;
+}
+
+.normal {
+  border: 1px solid lightskyblue;
+  background-color: lightskyblue;
+}
+
+.high {
+    border: 1px solid red;
+  background-color: red;
 }
 
 .btn-close-form:hover {

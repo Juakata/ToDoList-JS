@@ -59,26 +59,49 @@ function renderInfo(event) {
   const id = event.target.id.split("-").splice(-1);
   const list = document.getElementById("project__list");
   let tasks = "";
-  let priority = "";
+  let priority = checkPriority(id);
 
   projects[id].checklist.forEach(element => {
     tasks += `<h3>${element.content}</h3>`;
   });
-  if(projects[id].priority) {
-    priority = "Top";
-  } else {
-    priority = "Normal";
-  }
   list.innerHTML = `
     <h2 id="p-title">${projects[id].title}</h2>
     <h2>Description: ${projects[id].description}</h2>
     <h2>Deadline: ${projects[id].dueDate}</h2>
-    <h2>Priority: ${priority}</h2>
+    <h2>Priority: <button id="priority-btn" class="${priority.toLowerCase()}">${checkPriority(id)}</button></h2>
     <div class="list-tasks">${tasks}</div>
     <button type="button" class="btn-form" id="addTask-${id}">Add Task</button>
   `;
   const addNew = document.getElementById(`addTask-${id}`);
+  const priorityBtn = document.getElementById("priority-btn");
   addNew.addEventListener("click", showTaskForm, false);
+  priorityBtn.addEventListener("click", () => {
+    if (projects[id].priority) {
+      projects[id].priority = false;
+    } else {
+      projects[id].priority = true;
+    }
+    renderInfo(event);
+  }, false);
+}
+
+function checkPriority(id) {
+  let priority = "";
+  if (projects[id].priority) {
+    priority = "High";
+  } else {
+    priority = "Normal";
+  }
+  return priority;
+}
+
+function changePriority(priority) {
+  const options = ["High", "Normal"];
+  if (priority === options[0]) {
+    return options[1];
+  } else {
+    return options[2];
+  }
 }
 
 function addTask(event) {
@@ -105,7 +128,7 @@ function showTaskForm(event) {
   const id = event.target.id.split("-").slice(-1);
   const taskForm = document.getElementById("task__form");
   taskForm.style.display = "block";
-  if(!document.getElementById(`btn-${id}`)) {
+  if (!document.getElementById(`btn-${id}`)) {
     const formBtn = document.createElement("button");
     const closeBtn = document.createElement("button");
     formBtn.id = `btn-${id}`;
