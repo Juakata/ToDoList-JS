@@ -1,9 +1,5 @@
 import './main.css';
 
-let projects = [];
-
-
-
 const ToDo = (title, description, dueDate, priority, completed) => {
   return {
     title,
@@ -23,8 +19,26 @@ const Project = (title, checklist) => {
 
 const p = Project("Project 1", []);
 const p2 = Project("Project 2", []);
-projects.push(p);
-projects.push(p2);
+
+const task = ToDo("Task 1", "Desc of task 1", "2019-12-12", false, false);
+const task2 = ToDo("Task 2", "Desc of task 2", "2019-12-12", true, false);
+const task3 = ToDo("Task 3", "Desc of task 3", "2019-12-12", true, false);
+const task4 = ToDo("Task 4", "Desc of task 4", "2019-12-12", false, false);
+
+p.checklist.push(task);
+p.checklist.push(task2);
+p2.checklist.push(task3);
+p2.checklist.push(task4);
+
+let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+
+if (saveProjects == null) {
+  localStorage.setItem('saveProjects', JSON.stringify([]));
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects.push(p);
+  saveProjects.push(p2);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+}
 
 const newProject = document.getElementById("newProject");
 newProject.addEventListener("click", renderForm, false);
@@ -48,7 +62,9 @@ function addProject() {
     title: document.getElementById('projectTitle')
   };
   const project = Project(formData.title.value, []);
-  projects.push(project);
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects.push(project);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
   renderProjects();
   hideForm();
 }
@@ -61,17 +77,27 @@ function renderInfo(event) {
   btnAdd.classList.add('btn-form');
   btnAdd.classList.add('add-task');
   btnAdd.id = `addTask-${id}`;
-  btnAdd.appendChild(document.createTextNode('Add Task'));
+  const iPlus = document.createElement("i");
+  iPlus.classList.add('fa');
+  iPlus.classList.add('fa-plus');
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  btnAdd.appendChild(document.createTextNode(`${saveProjects[id].title} Add Task `));
+  btnAdd.appendChild(iPlus);
   list.appendChild(btnAdd);
-  projects[id].checklist.forEach((element, i) => {
+  saveProjects[id].checklist.forEach((element, i) => {
+    const unit = document.createElement('div');
+    unit.classList.add("task-container");
     let priority = checkPriority(id, i);
     const h21 = document.createElement("h2");
     const h22 = document.createElement("h2");
     const h23 = document.createElement("h2");
     const label = document.createElement("label");
+    const labelBtn = document.createElement("label");
     const checkBox = document.createElement('input');
+    label.classList.add('block-label');
+    labelBtn.classList.add('block-label');
     checkBox.setAttribute('type', 'checkbox');
-    checkBox.checked = projects[id].checklist[i].completed;
+    checkBox.checked = saveProjects[id].checklist[i].completed;
     h21.id = 'p-title';
     h21.appendChild(document.createTextNode(element.title));
     h22.appendChild(document.createTextNode(`Description: ${element.description}`));
@@ -80,27 +106,32 @@ function renderInfo(event) {
     btnP.classList.add(priority.toLowerCase());
     btnP.appendChild(document.createTextNode(checkPriority(id, i)));
     btnP.id = `btnP-${i}-${id}`;
-    list.appendChild(h21);
-    list.appendChild(h22);
-    list.appendChild(h23);
-    list.appendChild(btnP);
-    list.appendChild(label);
-    label.appendChild(document.createTextNode("Completed: "))
+    unit.appendChild(h21);
+    unit.appendChild(h22);
+    unit.appendChild(h23);
+    labelBtn.appendChild(document.createTextNode("Priority: "));
+    labelBtn.appendChild(btnP);
+    unit.appendChild(labelBtn);
+    unit.appendChild(label);
+    label.appendChild(document.createTextNode("Completed: "));
     label.appendChild(checkBox);
+    list.appendChild(unit);
     document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
-      if (projects[id].checklist[i].priority) {
-        projects[id].checklist[i].priority = false;
+      if (saveProjects[id].checklist[i].priority) {
+        saveProjects[id].checklist[i].priority = false;
       } else {
-        projects[id].checklist[i].priority = true;
+        saveProjects[id].checklist[i].priority = true;
       }
+      localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
       renderInfo(event);
     }, false);
     checkBox.addEventListener("click", () => {
       if (checkBox.checked) {
-        projects[id].checklist[i].completed = true;
+        saveProjects[id].checklist[i].completed = true;
       } else {
-        projects[id].checklist[i].completed = false;
+        saveProjects[id].checklist[i].completed = false;
       }
+      localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
       renderInfo(event);
     }, false);
   });
@@ -109,8 +140,9 @@ function renderInfo(event) {
 }
 
 function checkPriority(id, i) {
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   let priority = "";
-  if (projects[id].checklist[i].priority) {
+  if (saveProjects[id].checklist[i].priority) {
     priority = "High";
   } else {
     priority = "Normal";
@@ -146,7 +178,9 @@ function addTask(event) {
     priority: document.getElementById('top-priority').checked
   };
   const task = ToDo(taskFormData.title, taskFormData.description, taskFormData.dueDate, taskFormData.priority, false);
-  projects[id].checklist.push(task);
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects[id].checklist.push(task);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
   closeTaskForm(event);
   renderInfo(event);
 }
@@ -178,7 +212,10 @@ function showTaskForm(event) {
 
 function deleteProject(event) {
   const id = event.target.id.split("-").slice(-1);
-  projects.splice(id, 1);
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects.splice(id, 1);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+
   renderProjects();
   document.getElementById("project__list").innerHTML = '';
 }
@@ -192,7 +229,8 @@ function renderProjects() {
     <ul id="projects-menu">
     </ul>
   </nav>`;
-  projects.forEach((project, i) => {
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects.forEach((project, i) => {
     const li = document.createElement('li');
     const span = document.createElement('span');
     span.id = `project-${i}`;

@@ -142,14 +142,33 @@ nav {
   outline: none;
 }
 
+.task-container {
+  margin: 20px 0;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 1px 1px 6px grey;
+}
+
 .normal {
   border: 1px solid lightskyblue;
   background-color: lightskyblue;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.block-label {
+  display: block;
+  font-weight: bold;
+  padding: 5px;
 }
 
 .high {
-    border: 1px solid red;
+  border: 1px solid red;
   background-color: red;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .btn-close-form:hover {
@@ -172,7 +191,7 @@ nav {
 }
 
 .sidemenu {
-  box-shadow: 1px 1px 2px black;
+  box-shadow: 1px 1px 2px grey;
   position: relative;
   z-index: 1;
 }
