@@ -68,6 +68,10 @@ function renderInfo(event) {
     const h21 = document.createElement("h2");
     const h22 = document.createElement("h2");
     const h23 = document.createElement("h2");
+    const label = document.createElement("label");
+    const checkBox = document.createElement('input');
+    checkBox.setAttribute('type', 'checkbox');
+    checkBox.checked = projects[id].checklist[i].completed;
     h21.id = 'p-title';
     h21.appendChild(document.createTextNode(element.title));
     h22.appendChild(document.createTextNode(`Description: ${element.description}`));
@@ -80,6 +84,9 @@ function renderInfo(event) {
     list.appendChild(h22);
     list.appendChild(h23);
     list.appendChild(btnP);
+    list.appendChild(label);
+    label.appendChild(document.createTextNode("Completed: "))
+    label.appendChild(checkBox);
     document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
       if (projects[id].checklist[i].priority) {
         projects[id].checklist[i].priority = false;
@@ -88,7 +95,14 @@ function renderInfo(event) {
       }
       renderInfo(event);
     }, false);
-
+    checkBox.addEventListener("click", () => {
+      if (checkBox.checked) {
+        projects[id].checklist[i].completed = true;
+      } else {
+        projects[id].checklist[i].completed = false;
+      }
+      renderInfo(event);
+    }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);
   addNew.addEventListener("click", showTaskForm, false);
@@ -117,8 +131,7 @@ function closeTaskForm(event) {
   const id = event.target.id.split("-").slice(-1);
   const taskForm = document.getElementById("task__form");
   taskForm.style.display = "none";
-  taskForm.removeChild(document.getElementById(`btn-${id}`));
-  taskForm.removeChild(document.getElementById(`btnClose-${id}`));
+  taskForm.removeChild(document.getElementById(`btn-container`));
   document.getElementById('title').value = '';
   document.getElementById('description').value = '';
   document.getElementById('dueDate').value = '';
@@ -145,6 +158,8 @@ function showTaskForm(event) {
   if (!document.getElementById(`btn-${id}`)) {
     const formBtn = document.createElement("button");
     const closeBtn = document.createElement("button");
+    const div = document.createElement("div");
+    div.id = "btn-container";
     formBtn.id = `btn-${id}`;
     closeBtn.id = `btnClose-${id}`;
     formBtn.classList.add('btn-form');
@@ -153,8 +168,9 @@ function showTaskForm(event) {
     closeBtn.setAttribute("type", "button");
     formBtn.innerText = "Add";
     closeBtn.innerText = "Cancel";
-    taskForm.appendChild(formBtn);
-    taskForm.appendChild(closeBtn);
+    div.appendChild(formBtn);
+    div.appendChild(closeBtn);
+    taskForm.appendChild(div);
     formBtn.addEventListener("click", addTask, false);
     closeBtn.addEventListener('click', closeTaskForm.bind(), false);
   }
