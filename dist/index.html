@@ -18,7 +18,7 @@
     <div id="project__list"></div>
 
 
-    <form id="project__form">
+    <form id="task__form">
       <div class="form-container">
         <div class="form-element">
           <label for="title">Title:</label>
@@ -39,17 +39,17 @@
           <label for="normal-priority">Normal</label>
           <input type="radio" name="priority" id="normal-priority" checked>
         </div>
-        <div class="form-element center">
-          <button id="project__form-btn" type="button">Create Project</button>
-          <button id="btn-close" type="button">Cancel</button>
-        </div>
       </div>
     </form>
 
-    <form id="task__form">
+    <form id="project__form">
       <div class="form-element">
-        <label for="task">Add new task</label>
-        <input type="text" id="task">
+        <label for="task">Add a new project</label>
+        <input type="text" id="projectTitle">
+        <div class="form-element center">
+          <button id="project__form-btn" type="button">Create</button>
+          <button id="btn-close" type="button">Cancel</button>
+        </div>
       </div>
     </form>
   </main>

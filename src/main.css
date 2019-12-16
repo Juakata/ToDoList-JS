@@ -62,6 +62,7 @@ nav {
 
 #newProject {
   padding: 10px;
+  font-size: 20px;
   border-radius: 10px;
   background: none;
   color: #54a5e8;
@@ -158,6 +159,11 @@ nav {
 
 .btn-form {
   margin-right: 5px;
+}
+
+.add-task {
+  font-size: 20px;
+  padding: 10px;
 }
 
 .btn-form:hover {

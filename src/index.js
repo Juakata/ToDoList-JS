@@ -4,25 +4,25 @@ let projects = [];
 
 
 
-const Project = (title, description, dueDate, priority, checklist) => {
+const ToDo = (title, description, dueDate, priority, completed) => {
   return {
     title,
     description,
     dueDate,
     priority,
-    checklist
-  }
-}
-
-const ToDo = (content, completed) => {
-  return {
-    content,
     completed
   }
 }
 
-const p = Project("Project 1", "Description of project 1", "10-10-2019", false, []);
-const p2 = Project("Project 2", "Description of project 2", "08-08-2019", true, []);
+const Project = (title, checklist) => {
+  return {
+    title,
+    checklist
+  }
+}
+
+const p = Project("Project 1", []);
+const p2 = Project("Project 2", []);
 projects.push(p);
 projects.push(p2);
 
@@ -40,16 +40,14 @@ function renderForm() {
 function hideForm() {
   const form = document.getElementById("project__form");
   form.style.display = "none";
+  document.getElementById('projectTitle').value = '';
 }
 
 function addProject() {
   const formData = {
-    title: document.getElementById('title'),
-    description: document.getElementById('description'),
-    dueDate: document.getElementById('dueDate'),
-    priority: document.getElementById('top-priority')
+    title: document.getElementById('projectTitle')
   };
-  const project = Project(formData.title.value, formData.description.value, formData.dueDate.value, formData.priority.checked, []);
+  const project = Project(formData.title.value, []);
   projects.push(project);
   renderProjects();
   hideForm();
@@ -58,36 +56,47 @@ function addProject() {
 function renderInfo(event) {
   const id = event.target.id.split("-").splice(-1);
   const list = document.getElementById("project__list");
-  let tasks = "";
-  let priority = checkPriority(id);
+  list.innerHTML = '';
+  const btnAdd = document.createElement('button');
+  btnAdd.classList.add('btn-form');
+  btnAdd.classList.add('add-task');
+  btnAdd.id = `addTask-${id}`;
+  btnAdd.appendChild(document.createTextNode('Add Task'));
+  list.appendChild(btnAdd);
+  projects[id].checklist.forEach((element, i) => {
+    let priority = checkPriority(id, i);
+    const h21 = document.createElement("h2");
+    const h22 = document.createElement("h2");
+    const h23 = document.createElement("h2");
+    h21.id = 'p-title';
+    h21.appendChild(document.createTextNode(element.title));
+    h22.appendChild(document.createTextNode(`Description: ${element.description}`));
+    h23.appendChild(document.createTextNode(`Deadline: ${element.dueDate}`));
+    const btnP = document.createElement('button');
+    btnP.classList.add(priority.toLowerCase());
+    btnP.appendChild(document.createTextNode(checkPriority(id, i)));
+    btnP.id = `btnP-${i}-${id}`;
+    list.appendChild(h21);
+    list.appendChild(h22);
+    list.appendChild(h23);
+    list.appendChild(btnP);
+    document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
+      if (projects[id].checklist[i].priority) {
+        projects[id].checklist[i].priority = false;
+      } else {
+        projects[id].checklist[i].priority = true;
+      }
+      renderInfo(event);
+    }, false);
 
-  projects[id].checklist.forEach(element => {
-    tasks += `<h3>${element.content}</h3>`;
   });
-  list.innerHTML = `
-    <h2 id="p-title">${projects[id].title}</h2>
-    <h2>Description: ${projects[id].description}</h2>
-    <h2>Deadline: ${projects[id].dueDate}</h2>
-    <h2>Priority: <button id="priority-btn" class="${priority.toLowerCase()}">${checkPriority(id)}</button></h2>
-    <div class="list-tasks">${tasks}</div>
-    <button type="button" class="btn-form" id="addTask-${id}">Add Task</button>
-  `;
   const addNew = document.getElementById(`addTask-${id}`);
-  const priorityBtn = document.getElementById("priority-btn");
   addNew.addEventListener("click", showTaskForm, false);
-  priorityBtn.addEventListener("click", () => {
-    if (projects[id].priority) {
-      projects[id].priority = false;
-    } else {
-      projects[id].priority = true;
-    }
-    renderInfo(event);
-  }, false);
 }
 
-function checkPriority(id) {
+function checkPriority(id, i) {
   let priority = "";
-  if (projects[id].priority) {
+  if (projects[id].checklist[i].priority) {
     priority = "High";
   } else {
     priority = "Normal";
@@ -104,24 +113,29 @@ function changePriority(priority) {
   }
 }
 
-function addTask(event) {
-  const id = event.target.id.split("-").slice(-1);
-  const taskFormData = {
-    task: document.getElementById("task")
-  }
-  const task = ToDo(taskFormData.task.value, false);
-  projects[id].checklist.push(task);
-  closeTaskForm(event);
-  renderInfo(event);
-}
-
 function closeTaskForm(event) {
   const id = event.target.id.split("-").slice(-1);
   const taskForm = document.getElementById("task__form");
   taskForm.style.display = "none";
   taskForm.removeChild(document.getElementById(`btn-${id}`));
   taskForm.removeChild(document.getElementById(`btnClose-${id}`));
-  document.getElementById('task').value = '';
+  document.getElementById('title').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('dueDate').value = '';
+}
+
+function addTask(event) {
+  const id = event.target.id.split("-").slice(-1);
+  const taskFormData = {
+    title: document.getElementById('title').value,
+    description: document.getElementById('description').value,
+    dueDate: document.getElementById('dueDate').value,
+    priority: document.getElementById('top-priority').checked
+  };
+  const task = ToDo(taskFormData.title, taskFormData.description, taskFormData.dueDate, taskFormData.priority, false);
+  projects[id].checklist.push(task);
+  closeTaskForm(event);
+  renderInfo(event);
 }
 
 function showTaskForm(event) {
