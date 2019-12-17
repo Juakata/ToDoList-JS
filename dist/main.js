@@ -1,1 +1,774 @@
-!function(e){var n={};function t(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return e[o].call(r.exports,r,r.exports,t),r.l=!0,r.exports}t.m=e,t.c=n,t.d=function(e,n,o){t.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:o})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,n){if(1&n&&(e=t(e)),8&n)return e;if(4&n&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(t.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&n&&"string"!=typeof e)for(var r in e)t.d(o,r,function(n){return e[n]}.bind(null,r));return o},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="",t(t.s=0)}([function(e,n,t){"use strict";t.r(n);t(1);const o=(e,n,t,o,r)=>({title:e,description:n,dueDate:t,priority:o,completed:r}),r=(e,n)=>({title:e,checklist:n}),i=r("Project 1",[]),a=r("Project 2",[]),d=o("Task 1","Desc of task 1","2019-12-12",!1,!1),c=o("Task 2","Desc of task 2","2019-12-12",!0,!1),s=o("Task 3","Desc of task 3","2019-12-12",!0,!1),l=o("Task 4","Desc of task 4","2019-12-12",!1,!1);i.checklist.push(d),i.checklist.push(c),a.checklist.push(s),a.checklist.push(l);let p=JSON.parse(localStorage.getItem("saveProjects"));function u(){document.getElementById("project__form").style.display="none",document.getElementById("projectTitle").value=""}function m(){const e={title:document.getElementById("projectTitle")},n=r(e.title.value,[]);p=JSON.parse(localStorage.getItem("saveProjects")),p.push(n),localStorage.setItem("saveProjects",JSON.stringify(p)),y(),u()}function f(e){const n=e.target.id.split("-").splice(-1),t=document.getElementById("project__list");t.innerHTML="";const o=document.createElement("button");o.classList.add("btn-form"),o.classList.add("add-task"),o.id=`addTask-${n}`;const r=document.createElement("i");r.classList.add("fa"),r.classList.add("fa-plus"),p=JSON.parse(localStorage.getItem("saveProjects")),o.appendChild(document.createTextNode(`${p[n].title} Add Task `)),o.appendChild(r),t.appendChild(o),p[n].checklist.forEach((o,r)=>{const i=document.createElement("div");i.classList.add("task-container");let a=g(n,r);const d=document.createElement("h2"),c=document.createElement("h2"),s=document.createElement("h2"),l=document.createElement("label"),u=document.createElement("label"),m=document.createElement("input");l.classList.add("block-label"),u.classList.add("block-label"),m.setAttribute("type","checkbox"),m.checked=p[n].checklist[r].completed,d.id="p-title",d.appendChild(document.createTextNode(o.title)),c.appendChild(document.createTextNode(`Description: ${o.description}`)),s.appendChild(document.createTextNode(`Deadline: ${o.dueDate}`));const h=document.createElement("button");h.classList.add(a.toLowerCase()),h.appendChild(document.createTextNode(g(n,r))),h.id=`btnP-${r}-${n}`,i.appendChild(d),i.appendChild(c),i.appendChild(s),u.appendChild(document.createTextNode("Priority: ")),u.appendChild(h),i.appendChild(u),i.appendChild(l),l.appendChild(document.createTextNode("Completed: ")),l.appendChild(m),t.appendChild(i),document.getElementById(`btnP-${r}-${n}`).addEventListener("click",()=>{p[n].checklist[r].priority?p[n].checklist[r].priority=!1:p[n].checklist[r].priority=!0,localStorage.setItem("saveProjects",JSON.stringify(p)),f(e)},!1),m.addEventListener("click",()=>{m.checked?p[n].checklist[r].completed=!0:p[n].checklist[r].completed=!1,localStorage.setItem("saveProjects",JSON.stringify(p)),f(e)},!1)}),document.getElementById(`addTask-${n}`).addEventListener("click",x,!1)}function g(e,n){p=JSON.parse(localStorage.getItem("saveProjects"));let t="";return t=p[e].checklist[n].priority?"High":"Normal",t}function h(e){e.target.id.split("-").slice(-1);const n=document.getElementById("task__form");n.style.display="none",n.removeChild(document.getElementById("btn-container")),document.getElementById("title").value="",document.getElementById("description").value="",document.getElementById("dueDate").value=""}function b(e){const n=e.target.id.split("-").slice(-1),t={title:document.getElementById("title").value,description:document.getElementById("description").value,dueDate:document.getElementById("dueDate").value,priority:document.getElementById("top-priority").checked},r=o(t.title,t.description,t.dueDate,t.priority,!1);p=JSON.parse(localStorage.getItem("saveProjects")),p[n].checklist.push(r),localStorage.setItem("saveProjects",JSON.stringify(p)),h(e),f(e)}function x(e){const n=e.target.id.split("-").slice(-1),t=document.getElementById("task__form");if(t.style.display="block",!document.getElementById(`btn-${n}`)){const e=document.createElement("button"),o=document.createElement("button"),r=document.createElement("div");r.id="btn-container",e.id=`btn-${n}`,o.id=`btnClose-${n}`,e.classList.add("btn-form"),o.classList.add("btn-close-form"),e.setAttribute("type","button"),o.setAttribute("type","button"),e.innerText="Add",o.innerText="Cancel",r.appendChild(e),r.appendChild(o),t.appendChild(r),e.addEventListener("click",b,!1),o.addEventListener("click",h.bind(),!1)}}function v(e){const n=e.target.id.split("-").slice(-1);p=JSON.parse(localStorage.getItem("saveProjects")),p.splice(n,1),localStorage.setItem("saveProjects",JSON.stringify(p)),y(),document.getElementById("project__list").innerHTML=""}function y(){const e=document.getElementById("project");e.innerHTML="",e.innerHTML="<h1>Projects</h1>",e.innerHTML+='<nav>\n    <ul id="projects-menu">\n    </ul>\n  </nav>',p=JSON.parse(localStorage.getItem("saveProjects")),p.forEach((e,n)=>{const t=document.createElement("li"),o=document.createElement("span");o.id=`project-${n}`;const r=document.createTextNode(e.title);o.appendChild(r);const i=document.createElement("i");i.classList.add("fa"),i.classList.add("fa-trash"),i.id=`i-delete-${n}`,i.addEventListener("click",v.bind(),!1),o.addEventListener("click",f.bind(),!1),document.getElementById("projects-menu").appendChild(t),t.appendChild(o),t.appendChild(i)})}null==p&&(localStorage.setItem("saveProjects",JSON.stringify([])),p=JSON.parse(localStorage.getItem("saveProjects")),p.push(i),p.push(a),localStorage.setItem("saveProjects",JSON.stringify(p))),document.getElementById("newProject").addEventListener("click",(function(){const e=document.getElementById("project__form"),n=document.getElementById("project__form-btn");e.style.display="block",n.addEventListener("click",m,!1)}),!1),y(),document.getElementById("btn-close").addEventListener("click",u,!1)},function(e,n,t){var o=t(2);"string"==typeof o&&(o=[[e.i,o,""]]);var r={insert:"head",singleton:!1};t(4)(o,r);o.locals&&(e.exports=o.locals)},function(e,n,t){var o=t(3);(e.exports=o(!1)).push([e.i,"* {\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Lato', sans-serif;\n}\n\nheader {\n  width: 100%;\n  box-shadow: 1px 1px 3px grey;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  z-index: 2;\n}\n\nmain {\n  display: grid;\n  grid-template-columns: 20% 80%;\n}\n\nnav {\n  margin-top: 56px;\n}\n\n#project__form {\n  display: none;\n  width: 25%;\n  position: fixed;\n  background: white;\n  z-index: 3;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 20%;\n  padding: 30px;\n  box-shadow: 1px 1px 10px black;\n  border-radius: 20px;\n  text-align: center;\n}\n\n#task__form {\n  display: none;\n  width: 20%;\n  background: white;\n  position: fixed;\n  z-index: 20;\n  box-shadow: 1px 1px 5px black;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 30%;\n  border-radius: 10px;\n  padding: 20px;\n  text-align: center;\n}\n\n#newProject {\n  padding: 10px;\n  font-size: 20px;\n  border-radius: 10px;\n  background: none;\n  color: #54a5e8;\n  font-weight: bold;\n  border: none;\n  box-shadow: 2px 2px 1px #54a5e8;\n  cursor: pointer;\n  outline: none;\n  border: 1px solid #54a5e8;\n}\n\n#newProject:active {\n  box-shadow: -2px -2px 1px #54a5e8;\n}\n\n#btn-close, .btn-close-form {\n  border: 1px solid red;\n  background: red;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#btn-close:hover {\n  color: red;\n  background: none;\n}\n\n#project__form-btn, .btn-form {\n  border: 1px solid green;\n  background: green;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#projects-menu {\n  margin: 0;\n  padding: 0;\n}\n\n#project__form-btn:hover {\n  color: green;\n  background: none;\n}\n\n#projects-menu li span{\n  display: inline-block;\n  width: 75%;\n  padding: 15px;\n  cursor: pointer;\n}\n\n#project__list {\n  position: relative;\n  z-index: 1;\n  padding: 20px;\n}\n\n#p-title {\n  text-align: center;\n  background: #fc7703;\n  color: white;\n  padding: 10px;\n}\n\n#priority-btn {\n\n  padding: 10px 20px;\n}\n\n#priority-btn:focus {\n  outline: none;\n}\n\n.task-container {\n  margin: 20px 0;\n  border-radius: 20px;\n  padding: 15px;\n  box-shadow: 1px 1px 6px grey;\n}\n\n.normal {\n  border: 1px solid lightskyblue;\n  background-color: lightskyblue;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.block-label {\n  display: block;\n  font-weight: bold;\n  padding: 5px;\n}\n\n.high {\n  border: 1px solid red;\n  background-color: red;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.btn-close-form:hover {\n  color: red;\n  background: none;\n}\n\n.btn-form {\n  margin-right: 5px;\n}\n\n.add-task {\n  font-size: 20px;\n  padding: 10px;\n}\n\n.btn-form:hover {\n  color: green;\n  background: none;\n}\n\n.sidemenu {\n  box-shadow: 1px 1px 2px grey;\n  position: relative;\n  z-index: 1;\n}\n\n.sidemenu h1 {\n  width: 100%;\n  text-align: center;\n  background: #59a4ff;\n  color: white;\n  margin: 0;\n  padding: 10px;\n  box-shadow: 1px 1px 3px grey;\n  position: absolute;\n  z-index: 0;\n}\n\n.sidemenu li {\n  list-style: none;\n  font-size: 20px;\n}\n\n.sidemenu li:hover {\n  background: #54a5e8;\n  color: white;\n}\n\n.sidemenu li i{\n  color: black;\n  margin-left: 20px;\n  cursor: pointer;\n}\n\n.sidemenu li i:hover{\n  color: red;\n}\n\n.form-container {\n  display: inline-block;\n  text-align: left;\n}\n\n.form-element {\n  padding: 7px;\n}\n\n.form-element label{\n  font-weight: bold;\n  color: #2067a1;\n}\n\n.form-element input {\n  width: 100%;\n  border-radius: 8px;\n  border: none;\n  border: 1px solid #69a2d1;\n  box-shadow: 1px 1px 3px #2067a1;\n  outline: none;\n  padding: 5px;\n}\n\n.form-element input[type=radio] {\n  width: auto;\n  border: none;\n  box-shadow: none;\n}\n\n.center {\n  text-align: center;\n}\n\n.list-tasks{\n  margin-left: 20px;\n}\n\n@media(max-width: 1410px) {\n  #project__form{\n    width: 35%;\n  }\n}\n\n@media(max-width: 935px) {\n  #project__form{\n    width: 45%;\n  }\n\n  #task__form {\n    width: 40%;\n  }\n}\n\n@media(max-width: 720px) {\n  #project__form{\n    width: 55%;\n  }\n}\n\n@media(max-width: 590px) {\n  #project__form{\n    width: 65%;\n  }\n\n  #task__form {\n    width: 50%;\n  }\n}\n",""])},function(e,n,t){"use strict";e.exports=function(e){var n=[];return n.toString=function(){return this.map((function(n){var t=function(e,n){var t=e[1]||"",o=e[3];if(!o)return t;if(n&&"function"==typeof btoa){var r=(a=o,d=btoa(unescape(encodeURIComponent(JSON.stringify(a)))),c="sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(d),"/*# ".concat(c," */")),i=o.sources.map((function(e){return"/*# sourceURL=".concat(o.sourceRoot).concat(e," */")}));return[t].concat(i).concat([r]).join("\n")}var a,d,c;return[t].join("\n")}(n,e);return n[2]?"@media ".concat(n[2],"{").concat(t,"}"):t})).join("")},n.i=function(e,t){"string"==typeof e&&(e=[[null,e,""]]);for(var o={},r=0;r<this.length;r++){var i=this[r][0];null!=i&&(o[i]=!0)}for(var a=0;a<e.length;a++){var d=e[a];null!=d[0]&&o[d[0]]||(t&&!d[2]?d[2]=t:t&&(d[2]="(".concat(d[2],") and (").concat(t,")")),n.push(d))}},n}},function(e,n,t){"use strict";var o,r={},i=function(){return void 0===o&&(o=Boolean(window&&document&&document.all&&!window.atob)),o},a=function(){var e={};return function(n){if(void 0===e[n]){var t=document.querySelector(n);if(window.HTMLIFrameElement&&t instanceof window.HTMLIFrameElement)try{t=t.contentDocument.head}catch(e){t=null}e[n]=t}return e[n]}}();function d(e,n){for(var t=[],o={},r=0;r<e.length;r++){var i=e[r],a=n.base?i[0]+n.base:i[0],d={css:i[1],media:i[2],sourceMap:i[3]};o[a]?o[a].parts.push(d):t.push(o[a]={id:a,parts:[d]})}return t}function c(e,n){for(var t=0;t<e.length;t++){var o=e[t],i=r[o.id],a=0;if(i){for(i.refs++;a<i.parts.length;a++)i.parts[a](o.parts[a]);for(;a<o.parts.length;a++)i.parts.push(h(o.parts[a],n))}else{for(var d=[];a<o.parts.length;a++)d.push(h(o.parts[a],n));r[o.id]={id:o.id,refs:1,parts:d}}}}function s(e){var n=document.createElement("style");if(void 0===e.attributes.nonce){var o=t.nc;o&&(e.attributes.nonce=o)}if(Object.keys(e.attributes).forEach((function(t){n.setAttribute(t,e.attributes[t])})),"function"==typeof e.insert)e.insert(n);else{var r=a(e.insert||"head");if(!r)throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");r.appendChild(n)}return n}var l,p=(l=[],function(e,n){return l[e]=n,l.filter(Boolean).join("\n")});function u(e,n,t,o){var r=t?"":o.css;if(e.styleSheet)e.styleSheet.cssText=p(n,r);else{var i=document.createTextNode(r),a=e.childNodes;a[n]&&e.removeChild(a[n]),a.length?e.insertBefore(i,a[n]):e.appendChild(i)}}function m(e,n,t){var o=t.css,r=t.media,i=t.sourceMap;if(r&&e.setAttribute("media",r),i&&btoa&&(o+="\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(i))))," */")),e.styleSheet)e.styleSheet.cssText=o;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(o))}}var f=null,g=0;function h(e,n){var t,o,r;if(n.singleton){var i=g++;t=f||(f=s(n)),o=u.bind(null,t,i,!1),r=u.bind(null,t,i,!0)}else t=s(n),o=m.bind(null,t,n),r=function(){!function(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e)}(t)};return o(e),function(n){if(n){if(n.css===e.css&&n.media===e.media&&n.sourceMap===e.sourceMap)return;o(e=n)}else r()}}e.exports=function(e,n){(n=n||{}).attributes="object"==typeof n.attributes?n.attributes:{},n.singleton||"boolean"==typeof n.singleton||(n.singleton=i());var t=d(e,n);return c(t,n),function(e){for(var o=[],i=0;i<t.length;i++){var a=t[i],s=r[a.id];s&&(s.refs--,o.push(s))}e&&c(d(e,n),n);for(var l=0;l<o.length;l++){var p=o[l];if(0===p.refs){for(var u=0;u<p.parts.length;u++)p.parts[u]();delete r[p.id]}}}}}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var content = __webpack_require__(1);
+
+if (typeof content === 'string') {
+  content = [[module.i, content, '']];
+}
+
+var options = {}
+
+options.insert = "head";
+options.singleton = false;
+
+var update = __webpack_require__(3)(content, options);
+
+if (content.locals) {
+  module.exports = content.locals;
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(2);
+exports = module.exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "* {\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Lato', sans-serif;\n}\n\nheader {\n  width: 100%;\n  box-shadow: 1px 1px 3px grey;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  z-index: 2;\n}\n\nmain {\n  display: grid;\n  grid-template-columns: 20% 80%;\n}\n\nnav {\n  margin-top: 56px;\n}\n\n#project__form {\n  display: none;\n  width: 25%;\n  position: fixed;\n  background: white;\n  z-index: 3;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 20%;\n  padding: 30px;\n  box-shadow: 1px 1px 10px black;\n  border-radius: 20px;\n  text-align: center;\n}\n\n#task__form {\n  display: none;\n  width: 20%;\n  background: white;\n  position: fixed;\n  z-index: 20;\n  box-shadow: 1px 1px 5px black;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 30%;\n  border-radius: 10px;\n  padding: 20px;\n  text-align: center;\n}\n\n#newProject {\n  padding: 10px;\n  font-size: 20px;\n  border-radius: 10px;\n  background: none;\n  color: #54a5e8;\n  font-weight: bold;\n  border: none;\n  box-shadow: 2px 2px 1px #54a5e8;\n  cursor: pointer;\n  outline: none;\n  border: 1px solid #54a5e8;\n}\n\n#newProject:active {\n  box-shadow: -2px -2px 1px #54a5e8;\n}\n\n#btn-close, .btn-close-form {\n  border: 1px solid red;\n  background: red;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#btn-close:hover {\n  color: red;\n  background: none;\n}\n\n#project__form-btn, .btn-form {\n  border: 1px solid green;\n  background: green;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#projects-menu {\n  margin: 0;\n  padding: 0;\n}\n\n#project__form-btn:hover {\n  color: green;\n  background: none;\n}\n\n#projects-menu li span{\n  display: inline-block;\n  width: 75%;\n  padding: 15px;\n  cursor: pointer;\n}\n\n#project__list {\n  position: relative;\n  z-index: 1;\n  padding: 20px;\n}\n\n#p-title {\n  text-align: center;\n  background: #fc7703;\n  color: white;\n  padding: 10px;\n}\n\n#priority-btn {\n\n  padding: 10px 20px;\n}\n\n#priority-btn:focus {\n  outline: none;\n}\n\n.task-container {\n  margin: 20px 0;\n  border-radius: 20px;\n  padding: 15px;\n  box-shadow: 1px 1px 6px grey;\n}\n\n.normal {\n  border: 1px solid lightskyblue;\n  background-color: lightskyblue;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.block-label {\n  display: block;\n  font-weight: bold;\n  padding: 5px;\n}\n\n.high {\n  border: 1px solid red;\n  background-color: red;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.btn-close-form:hover {\n  color: red;\n  background: none;\n}\n\n.btn-form {\n  margin-right: 5px;\n}\n\n.add-task {\n  font-size: 20px;\n  padding: 10px;\n}\n\n.btn-form:hover {\n  color: green;\n  background: none;\n}\n\n.sidemenu {\n  box-shadow: 1px 1px 2px grey;\n  position: relative;\n  z-index: 1;\n}\n\n.sidemenu h1 {\n  width: 100%;\n  text-align: center;\n  background: #59a4ff;\n  color: white;\n  margin: 0;\n  padding: 10px;\n  box-shadow: 1px 1px 3px grey;\n  position: absolute;\n  z-index: 0;\n}\n\n.sidemenu li {\n  list-style: none;\n  font-size: 20px;\n}\n\n.sidemenu li:hover {\n  background: #54a5e8;\n  color: white;\n}\n\n.sidemenu li i{\n  color: black;\n  margin-left: 20px;\n  cursor: pointer;\n}\n\n.sidemenu li i:hover{\n  color: red;\n}\n\n.form-container {\n  display: inline-block;\n  text-align: left;\n}\n\n.form-element {\n  padding: 7px;\n}\n\n.form-element label{\n  font-weight: bold;\n  color: #2067a1;\n}\n\n.form-element input {\n  width: 100%;\n  border-radius: 8px;\n  border: none;\n  border: 1px solid #69a2d1;\n  box-shadow: 1px 1px 3px #2067a1;\n  outline: none;\n  padding: 5px;\n}\n\n.form-element input[type=radio] {\n  width: auto;\n  border: none;\n  box-shadow: none;\n}\n\n.center {\n  text-align: center;\n}\n\n.list-tasks{\n  margin-left: 20px;\n}\n\n@media(max-width: 1410px) {\n  #project__form{\n    width: 35%;\n  }\n}\n\n@media(max-width: 935px) {\n  #project__form{\n    width: 45%;\n  }\n\n  #task__form {\n    width: 40%;\n  }\n}\n\n@media(max-width: 720px) {\n  #project__form{\n    width: 55%;\n  }\n}\n\n@media(max-width: 590px) {\n  #project__form{\n    width: 65%;\n  }\n\n  #task__form {\n    width: 50%;\n  }\n}\n", ""]);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], "{").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      // eslint-disable-next-line prefer-destructuring
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = modules[_i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = "(".concat(item[2], ") and (").concat(mediaQuery, ")");
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot).concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var stylesInDom = {};
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+function listToStyles(list, options) {
+  var styles = [];
+  var newStyles = {};
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var css = item[1];
+    var media = item[2];
+    var sourceMap = item[3];
+    var part = {
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    };
+
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = {
+        id: id,
+        parts: [part]
+      });
+    } else {
+      newStyles[id].parts.push(part);
+    }
+  }
+
+  return styles;
+}
+
+function addStylesToDom(styles, options) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i];
+    var domStyle = stylesInDom[item.id];
+    var j = 0;
+
+    if (domStyle) {
+      domStyle.refs++;
+
+      for (; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j]);
+      }
+
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j], options));
+      }
+    } else {
+      var parts = [];
+
+      for (; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j], options));
+      }
+
+      stylesInDom[item.id] = {
+        id: item.id,
+        refs: 1,
+        parts: parts
+      };
+    }
+  }
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+
+  if (typeof options.attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : undefined;
+
+    if (nonce) {
+      options.attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(options.attributes).forEach(function (key) {
+    style.setAttribute(key, options.attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  }
+
+  if (sourceMap && btoa) {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {};
+  options.attributes = typeof options.attributes === 'object' ? options.attributes : {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  var styles = listToStyles(list, options);
+  addStylesToDom(styles, options);
+  return function update(newList) {
+    var mayRemove = [];
+
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i];
+      var domStyle = stylesInDom[item.id];
+
+      if (domStyle) {
+        domStyle.refs--;
+        mayRemove.push(domStyle);
+      }
+    }
+
+    if (newList) {
+      var newStyles = listToStyles(newList, options);
+      addStylesToDom(newStyles, options);
+    }
+
+    for (var _i = 0; _i < mayRemove.length; _i++) {
+      var _domStyle = mayRemove[_i];
+
+      if (_domStyle.refs === 0) {
+        for (var j = 0; j < _domStyle.parts.length; j++) {
+          _domStyle.parts[j]();
+        }
+
+        delete stylesInDom[_domStyle.id];
+      }
+    }
+  };
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./src/app/models/toDo.js
+const ToDo = (title, description, dueDate, priority, completed) => {
+  return {
+    title,
+    description,
+    dueDate,
+    priority,
+    completed
+  }
+};
+// CONCATENATED MODULE: ./src/app/models/project.js
+const Project = (title, checklist) => {
+  return {
+    title,
+    checklist
+  }
+}
+// CONCATENATED MODULE: ./src/app/views/taskView.js
+
+
+let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+
+const renderInfo = (event) => {
+  const id = event.target.id.split("-").splice(-1);
+  const list = document.getElementById("project__list");
+  list.innerHTML = '';
+  const btnAdd = document.createElement('button');
+  btnAdd.classList.add('btn-form');
+  btnAdd.classList.add('add-task');
+  btnAdd.id = `addTask-${id}`;
+  const iPlus = document.createElement("i");
+  iPlus.classList.add('fa');
+  iPlus.classList.add('fa-plus');
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  btnAdd.appendChild(document.createTextNode(`${saveProjects[id].title} Add Task `));
+  btnAdd.appendChild(iPlus);
+  list.appendChild(btnAdd);
+  saveProjects[id].checklist.forEach((element, i) => {
+    const unit = document.createElement('div');
+    unit.classList.add("task-container");
+    let priority = checkPriority(id, i);
+    const h21 = document.createElement("h2");
+    const h22 = document.createElement("h2");
+    const h23 = document.createElement("h2");
+    const label = document.createElement("label");
+    const labelBtn = document.createElement("label");
+    const checkBox = document.createElement('input');
+    label.classList.add('block-label');
+    labelBtn.classList.add('block-label');
+    checkBox.setAttribute('type', 'checkbox');
+    checkBox.checked = saveProjects[id].checklist[i].completed;
+    h21.id = 'p-title';
+    h21.appendChild(document.createTextNode(element.title));
+    h22.appendChild(document.createTextNode(`Description: ${element.description}`));
+    h23.appendChild(document.createTextNode(`Deadline: ${element.dueDate}`));
+    const btnP = document.createElement('button');
+    btnP.classList.add(priority.toLowerCase());
+    btnP.appendChild(document.createTextNode(checkPriority(id, i)));
+    btnP.id = `btnP-${i}-${id}`;
+    unit.appendChild(h21);
+    unit.appendChild(h22);
+    unit.appendChild(h23);
+    labelBtn.appendChild(document.createTextNode("Priority: "));
+    labelBtn.appendChild(btnP);
+    unit.appendChild(labelBtn);
+    unit.appendChild(label);
+    label.appendChild(document.createTextNode("Completed: "));
+    label.appendChild(checkBox);
+    list.appendChild(unit);
+    document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
+      if (saveProjects[id].checklist[i].priority) {
+        saveProjects[id].checklist[i].priority = false;
+      } else {
+        saveProjects[id].checklist[i].priority = true;
+      }
+      localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+      renderInfo(event);
+    }, false);
+    checkBox.addEventListener("click", () => {
+      if (checkBox.checked) {
+        saveProjects[id].checklist[i].completed = true;
+      } else {
+        saveProjects[id].checklist[i].completed = false;
+      }
+      localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+      renderInfo(event);
+    }, false);
+  });
+  const addNew = document.getElementById(`addTask-${id}`);
+  addNew.addEventListener("click", showTaskForm, false);
+}
+
+function showTaskForm(event) {
+  const id = event.target.id.split("-").slice(-1);
+  const taskForm = document.getElementById("task__form");
+  taskForm.style.display = "block";
+
+  if (!document.getElementById(`btn-${id}`)) {
+    const formBtn = document.createElement("button");
+    const closeBtn = document.createElement("button");
+    const div = document.createElement("div");
+    div.id = "btn-container";
+    formBtn.id = `btn-${id}`;
+    closeBtn.id = `btnClose-${id}`;
+    formBtn.classList.add('btn-form');
+    closeBtn.classList.add('btn-close-form');
+    formBtn.setAttribute("type", "button");
+    closeBtn.setAttribute("type", "button");
+    formBtn.innerText = "Add";
+    closeBtn.innerText = "Cancel";
+    div.appendChild(formBtn);
+    div.appendChild(closeBtn);
+    taskForm.appendChild(div);
+    formBtn.addEventListener("click", addTask, false);
+    closeBtn.addEventListener('click', closeTaskForm.bind(), false);
+  }
+}
+
+function closeTaskForm() {
+  const taskForm = document.getElementById("task__form");
+  taskForm.style.display = "none";
+  taskForm.removeChild(document.getElementById(`btn-container`));
+  document.getElementById('title').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('dueDate').value = '';
+}
+
+function addTask(event) {
+  const id = event.target.id.split("-").slice(-1);
+  const taskFormData = {
+    title: document.getElementById('title').value,
+    description: document.getElementById('description').value,
+    dueDate: document.getElementById('dueDate').value,
+    priority: document.getElementById('top-priority').checked
+  };
+  const task = ToDo(taskFormData.title, taskFormData.description, taskFormData.dueDate, taskFormData.priority, false);
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects[id].checklist.push(task);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  closeTaskForm(event);
+  renderInfo(event);
+}
+
+function checkPriority(id, i) {
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  let priority = "";
+  if (saveProjects[id].checklist[i].priority) {
+    priority = "High";
+  } else {
+    priority = "Normal";
+  }
+  return priority;
+}
+// CONCATENATED MODULE: ./src/app/views/projectView.js
+
+
+
+let projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+
+const renderForm = () => {
+  const form = document.getElementById("project__form");
+  const btn = document.getElementById("project__form-btn");
+  form.style.display = "block";
+  btn.addEventListener("click", addProject, false);
+}
+
+function addProject() {
+  const formData = {
+    title: document.getElementById('projectTitle')
+  };
+  const project = Project(formData.title.value, []);
+  projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  projectView_saveProjects.push(project);
+  localStorage.setItem('saveProjects', JSON.stringify(projectView_saveProjects));
+  renderProjects();
+  hideForm();
+}
+
+const hideForm = () => {
+  const form = document.getElementById("project__form");
+  form.style.display = "none";
+  document.getElementById('projectTitle').value = '';
+}
+
+const renderProjects = () => {
+  const container = document.getElementById("project");
+  container.innerHTML = "";
+  container.innerHTML = `<h1>Projects</h1>`;
+  container.innerHTML += `<nav>
+    <ul id="projects-menu">
+    </ul>
+  </nav>`;
+  projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  projectView_saveProjects.forEach((project, i) => {
+    const li = document.createElement('li');
+    const span = document.createElement('span');
+    span.id = `project-${i}`;
+    const text = document.createTextNode(project.title);
+    span.appendChild(text);
+    const icon = document.createElement('i');
+    icon.classList.add('fa');
+    icon.classList.add('fa-trash');
+    icon.id = `i-delete-${i}`;
+    icon.addEventListener("click", deleteProject.bind(), false);
+    span.addEventListener("click", renderInfo.bind(), false);
+    document.getElementById('projects-menu').appendChild(li);
+    li.appendChild(span);
+    li.appendChild(icon);
+  });
+}
+
+function deleteProject(event) {
+  const id = event.target.id.split("-").slice(-1);
+  projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  projectView_saveProjects.splice(id, 1);
+  localStorage.setItem('saveProjects', JSON.stringify(projectView_saveProjects));
+
+  renderProjects();
+  document.getElementById("project__list").innerHTML = '';
+}
+
+// EXTERNAL MODULE: ./src/main.css
+var main = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./src/index.js
+
+
+
+
+
+
+const p = Project("Project 1", []);
+const p2 = Project("Project 2", []);
+
+const src_task = ToDo("Task 1", "Desc of task 1", "2019-12-12", false, false);
+const task2 = ToDo("Task 2", "Desc of task 2", "2019-12-12", true, false);
+const task3 = ToDo("Task 3", "Desc of task 3", "2019-12-12", true, false);
+const task4 = ToDo("Task 4", "Desc of task 4", "2019-12-12", false, false);
+
+p.checklist.push(src_task);
+p.checklist.push(task2);
+p2.checklist.push(task3);
+p2.checklist.push(task4);
+
+let src_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+
+if (src_saveProjects == null) {
+  localStorage.setItem('saveProjects', JSON.stringify([]));
+  src_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  src_saveProjects.push(p);
+  src_saveProjects.push(p2);
+  localStorage.setItem('saveProjects', JSON.stringify(src_saveProjects));
+}
+
+const newProject = document.getElementById("newProject");
+newProject.addEventListener("click", renderForm, false);
+
+renderProjects();
+
+document.getElementById('btn-close').addEventListener('click', hideForm, false);
+
+
+/***/ })
+/******/ ]);
