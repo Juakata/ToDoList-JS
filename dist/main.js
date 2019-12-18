@@ -114,7 +114,7 @@ if (content.locals) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(2);
 exports = module.exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "* {\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\nbutton > * {\n    pointer-events: none;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Lato', sans-serif;\n}\n\nheader {\n  width: 100%;\n  box-shadow: 1px 1px 3px grey;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  z-index: 2;\n}\n\nmain {\n  display: grid;\n  grid-template-columns: 20% 80%;\n}\n\nnav {\n  margin-top: 56px;\n}\n\n#project__form {\n  display: none;\n  width: 25%;\n  position: fixed;\n  background: white;\n  z-index: 3;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 20%;\n  padding: 30px;\n  box-shadow: 1px 1px 10px black;\n  border-radius: 20px;\n  text-align: center;\n}\n\n#task__form {\n  display: none;\n  width: 20%;\n  background: white;\n  position: fixed;\n  z-index: 20;\n  box-shadow: 1px 1px 5px black;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 30%;\n  border-radius: 10px;\n  padding: 20px;\n  text-align: center;\n}\n\n#newProject {\n  padding: 10px;\n  font-size: 20px;\n  border-radius: 10px;\n  background: none;\n  color: #54a5e8;\n  font-weight: bold;\n  border: none;\n  box-shadow: 2px 2px 1px #54a5e8;\n  cursor: pointer;\n  outline: none;\n  border: 1px solid #54a5e8;\n}\n\n#newProject:active {\n  box-shadow: -2px -2px 1px #54a5e8;\n}\n\n#btn-close, .btn-close-form {\n  border: 1px solid red;\n  background: red;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#btn-close:hover {\n  color: red;\n  background: none;\n}\n\n#project__form-btn, .btn-form {\n  border: 1px solid green;\n  background: green;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#projects-menu {\n  margin: 0;\n  padding: 0;\n}\n\n#project__form-btn:hover {\n  color: green;\n  background: none;\n}\n\n#projects-menu li span{\n  display: inline-block;\n  width: 75%;\n  padding: 15px;\n  cursor: pointer;\n}\n\n#project__list {\n  position: relative;\n  z-index: 1;\n  padding: 20px;\n}\n\n#p-title {\n  text-align: center;\n  background: #fc7703;\n  color: white;\n  padding: 10px;\n}\n\n#priority-btn {\n\n  padding: 10px 20px;\n}\n\n#priority-btn:focus {\n  outline: none;\n}\n\n.btn-remove {\n  background: none;\n  border: none;\n  position: absolute;\n  right: 25px;\n  top: 43px;\n  font-size: 30px;\n  cursor: pointer;\n  color: white;\n}\n\n.btn-remove:hover {\n  color: #c90c02;\n}\n\n.highlight {\n background-color: #54a5e8;\n color: white;\n}\n\n.task-container {\n  position: relative;\n  margin: 20px 0;\n  border-radius: 20px;\n  padding: 15px;\n  box-shadow: 1px 1px 6px grey;\n}\n\n.normal {\n  border: 1px solid lightskyblue;\n  background-color: lightskyblue;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.block-label {\n  display: block;\n  font-weight: bold;\n  padding: 5px;\n}\n\n.high {\n  border: 1px solid red;\n  background-color: red;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.btn-close-form:hover {\n  color: red;\n  background: none;\n}\n\n.btn-form {\n  margin-right: 5px;\n}\n\n.add-task {\n  font-size: 20px;\n  padding: 10px;\n}\n\n.btn-form:hover {\n  color: green;\n  background: none;\n}\n\n.sidemenu {\n  box-shadow: 1px 1px 2px grey;\n  position: relative;\n  z-index: 1;\n}\n\n.sidemenu h1 {\n  width: 100%;\n  text-align: center;\n  background: #59a4ff;\n  color: white;\n  margin: 0;\n  padding: 10px;\n  box-shadow: 1px 1px 3px grey;\n  position: absolute;\n  z-index: 0;\n}\n\n.sidemenu li {\n  list-style: none;\n  font-size: 20px;\n}\n\n.sidemenu li:hover {\n  background: #54a5e8;\n  color: white;\n}\n\n.sidemenu li i{\n  color: black;\n  margin-left: 20px;\n  cursor: pointer;\n}\n\n.sidemenu li i:hover{\n  color: red;\n}\n\n.form-container {\n  display: inline-block;\n  text-align: left;\n}\n\n.form-element {\n  padding: 7px;\n}\n\n.form-element label{\n  font-weight: bold;\n  color: #2067a1;\n}\n\n.form-element input {\n  width: 100%;\n  border-radius: 8px;\n  border: none;\n  border: 1px solid #69a2d1;\n  box-shadow: 1px 1px 3px #2067a1;\n  outline: none;\n  padding: 5px;\n}\n\n.form-element input[type=radio] {\n  width: auto;\n  border: none;\n  box-shadow: none;\n}\n\n.center {\n  text-align: center;\n}\n\n.list-tasks{\n  margin-left: 20px;\n}\n\n@media(max-width: 1410px) {\n  #project__form{\n    width: 35%;\n  }\n}\n\n@media(max-width: 935px) {\n  #project__form{\n    width: 45%;\n  }\n\n  #task__form {\n    width: 40%;\n  }\n}\n\n@media(max-width: 720px) {\n  #project__form{\n    width: 55%;\n  }\n}\n\n@media(max-width: 590px) {\n  #project__form{\n    width: 65%;\n  }\n\n  #task__form {\n    width: 50%;\n  }\n}\n", ""]);
+exports.push([module.i, "* {\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\nbutton > * {\n    pointer-events: none;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Lato', sans-serif;\n}\n\nheader {\n  width: 100%;\n  box-shadow: 1px 1px 3px grey;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  z-index: 2;\n}\n\nmain {\n  display: grid;\n  grid-template-columns: 20% 80%;\n}\n\nnav {\n  margin-top: 56px;\n}\n\n#project__form {\n  display: none;\n  width: 25%;\n  position: fixed;\n  background: white;\n  z-index: 3;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 20%;\n  padding: 30px;\n  box-shadow: 1px 1px 10px black;\n  border-radius: 20px;\n  text-align: center;\n}\n\n#task__form {\n  display: none;\n  width: 20%;\n  background: white;\n  position: fixed;\n  z-index: 20;\n  box-shadow: 1px 1px 5px black;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 30%;\n  border-radius: 10px;\n  padding: 20px;\n  text-align: center;\n}\n\n#newProject {\n  padding: 10px;\n  font-size: 20px;\n  border-radius: 10px;\n  background: none;\n  color: #54a5e8;\n  font-weight: bold;\n  border: none;\n  box-shadow: 2px 2px 1px #54a5e8;\n  cursor: pointer;\n  outline: none;\n  border: 1px solid #54a5e8;\n}\n\n#newProject:active {\n  box-shadow: -2px -2px 1px #54a5e8;\n}\n\n#btn-close, .btn-close-form {\n  border: 1px solid red;\n  background: red;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#btn-close:hover {\n  color: red;\n  background: none;\n}\n\n#project__form-btn, .btn-form {\n  border: 1px solid green;\n  background: green;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#projects-menu {\n  margin: 0;\n  padding: 0;\n}\n\n#project__form-btn:hover {\n  color: green;\n  background: none;\n}\n\n#projects-menu li span{\n  display: inline-block;\n  width: 75%;\n  padding: 15px;\n  cursor: pointer;\n}\n\n#project__list {\n  position: relative;\n  z-index: 1;\n  padding: 20px;\n}\n\n#p-title {\n  text-align: center;\n  background: #fc7703;\n  color: white;\n  padding: 10px;\n}\n\n#priority-btn {\n\n  padding: 10px 20px;\n}\n\n#priority-btn:focus {\n  outline: none;\n}\n\n.btn-remove {\n  background: none;\n  border: none;\n  position: absolute;\n  right: 25px;\n  top: 48px;\n  font-size: 22px;\n  cursor: pointer;\n  color: white;\n  outline: none;\n}\n\n.btn-remove:hover {\n  color: #c90c02;\n}\n\n.btn-edit {\n  background: none;\n  border: none;\n  position: absolute;\n  right: 60px;\n  top: 47px;\n  font-size: 25px;\n  cursor: pointer;\n  color: white;\n  outline: none;\n}\n\n.btn-edit:hover {\n  color: green;\n}\n\n.highlight {\n background-color: #54a5e8;\n color: white;\n}\n\n.task-container {\n  position: relative;\n  margin: 20px 0;\n  border-radius: 20px;\n  padding: 15px;\n  box-shadow: 1px 1px 6px grey;\n}\n\n.normal {\n  border: 1px solid lightskyblue;\n  background-color: lightskyblue;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.block-label {\n  display: block;\n  font-weight: bold;\n  padding: 5px;\n}\n\n.high {\n  border: 1px solid red;\n  background-color: red;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.btn-close-form:hover {\n  color: red;\n  background: none;\n}\n\n.btn-form {\n  margin-right: 5px;\n}\n\n.add-task {\n  font-size: 20px;\n  padding: 10px;\n}\n\n.btn-form:hover {\n  color: green;\n  background: none;\n}\n\n.sidemenu {\n  box-shadow: 1px 1px 2px grey;\n  position: relative;\n  z-index: 1;\n}\n\n.sidemenu h1 {\n  width: 100%;\n  text-align: center;\n  background: #59a4ff;\n  color: white;\n  margin: 0;\n  padding: 10px;\n  box-shadow: 1px 1px 3px grey;\n  position: absolute;\n  z-index: 0;\n}\n\n.sidemenu li {\n  list-style: none;\n  font-size: 20px;\n}\n\n.sidemenu li:hover {\n  background: #54a5e8;\n  color: white;\n}\n\n.sidemenu li i{\n  color: black;\n  margin-left: 20px;\n  cursor: pointer;\n}\n\n.sidemenu li i:hover{\n  color: red;\n}\n\n.form-container {\n  display: inline-block;\n  text-align: left;\n}\n\n.form-element {\n  padding: 7px;\n}\n\n.form-element label{\n  font-weight: bold;\n  color: #2067a1;\n}\n\n.form-element input {\n  width: 100%;\n  border-radius: 8px;\n  border: none;\n  border: 1px solid #69a2d1;\n  box-shadow: 1px 1px 3px #2067a1;\n  outline: none;\n  padding: 5px;\n}\n\n.form-element input[type=radio] {\n  width: auto;\n  border: none;\n  box-shadow: none;\n}\n\n.center {\n  text-align: center;\n}\n\n.list-tasks{\n  margin-left: 20px;\n}\n\n@media(max-width: 1410px) {\n  #project__form{\n    width: 35%;\n  }\n}\n\n@media(max-width: 935px) {\n  #project__form{\n    width: 45%;\n  }\n\n  #task__form {\n    width: 40%;\n  }\n}\n\n@media(max-width: 720px) {\n  #project__form{\n    width: 55%;\n  }\n}\n\n@media(max-width: 590px) {\n  #project__form{\n    width: 65%;\n  }\n\n  #task__form {\n    width: 50%;\n  }\n}\n", ""]);
 
 
 /***/ }),
@@ -538,7 +538,7 @@ const addTask = (event) => {
     priority: document.getElementById('top-priority').checked,
   };
   const task = ToDo(taskFormData.title, taskFormData.description,
-    taskFormData.dueDate, taskFormData.priority, false);
+  taskFormData.dueDate, taskFormData.priority, false);
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects[id].checklist.push(task);
   localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
@@ -587,14 +587,23 @@ const createToDo = (id, i, element, priority, list) => {
   const labelBtn = document.createElement('label');
   const checkBox = document.createElement('input');
   const btnRemove = document.createElement('button');
+  const btnEdit = document.createElement('button');
   btnRemove.id = `btnRemove-${i}`;
+  btnEdit.id = `btnEdit-${i}`;
   btnRemove.classList.add('btn-remove');
+  btnEdit.classList.add('btn-edit');
   btnRemove.setAttribute('type', 'button');
+  btnEdit.setAttribute('type', 'button');
   const iRemove = document.createElement('i');
+  const iEdit = document.createElement('i');
   iRemove.classList.add('fa');
   iRemove.classList.add('fa-minus-circle');
+  iEdit.classList.add('fa');
+  iEdit.classList.add('fa-edit');
   btnRemove.appendChild(iRemove);
+  btnEdit.appendChild(iEdit);
   unit.appendChild(btnRemove);
+  unit.appendChild(btnEdit);
   label.classList.add('block-label');
   labelBtn.classList.add('block-label');
   checkBox.setAttribute('type', 'checkbox');
@@ -623,6 +632,17 @@ const createToDo = (id, i, element, priority, list) => {
   }, false);
 };
 
+const editTask = (id, i) => {
+  taskView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  taskView_saveProjects[id].checklist[i].title = document.getElementById('title').value;
+  taskView_saveProjects[id].checklist[i].description = document.getElementById('description').value;
+  taskView_saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
+  taskView_saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
+  localStorage.setItem('saveProjects', JSON.stringify(taskView_saveProjects));
+  closeTaskForm();
+  renderInfo(event);
+}
+
 const closeTaskForm = () => {
   const taskForm = document.getElementById('task__form');
   taskForm.style.display = 'none';
@@ -635,11 +655,57 @@ const closeTaskForm = () => {
   document.getElementById('dueDate').value = '';
 };
 
+const showTaskEditForm = (id, i) => {
+  const taskForm = document.getElementById('task__form');
+  taskForm.style.display = 'block';
+  const parent = document.querySelector('.form-container');
+  const radiosContainer = document.getElementById('radios-container');
+  if (radiosContainer !== null) {
+    parent.removeChild(radiosContainer);
+  }
+  if (!document.getElementById(`btn-${id}`)) {
+    const formBtn = document.createElement('button');
+    const closeBtn = document.createElement('button');
+    const div = document.createElement('div');
+    div.id = 'btn-container';
+    formBtn.id = `btn-${id}`;
+    closeBtn.id = `btnClose-${id}`;
+    formBtn.classList.add('btn-form');
+    closeBtn.classList.add('btn-close-form');
+    formBtn.setAttribute('type', 'button');
+    closeBtn.setAttribute('type', 'button');
+    formBtn.innerText = 'Edit';
+    closeBtn.innerText = 'Cancel';
+    div.appendChild(formBtn);
+    div.appendChild(closeBtn);
+    taskForm.appendChild(div);
+    document.getElementById('title').value = taskView_saveProjects[id].checklist[i].title;
+    document.getElementById('description').value = taskView_saveProjects[id].checklist[i].description;
+    document.getElementById('dueDate').value = taskView_saveProjects[id].checklist[i].dueDate;
+    formBtn.addEventListener('click', () => {
+      editTask(id, i);
+    }, false);
+    closeBtn.addEventListener('click', closeTaskForm.bind(), false);
+  }
+};
+
 const showTaskForm = (event) => {
   const id = event.target.id.split('-').slice(-1);
   const taskForm = document.getElementById('task__form');
   taskForm.style.display = 'block';
-
+  const parent = document.querySelector('.form-container');
+  let radiosContainer = document.getElementById('radios-container');
+  if (radiosContainer === null) {
+    parent.innerHTML += `<div id="radios-container" class="form-element">
+      <label>Priority:</label>
+      <label for="high-priority">High</label>
+      <input type="radio" name="priority" id="top-priority">
+      <label for="normal-priority">Normal</label>
+      <input type="radio" name="priority" id="normal-priority" checked>
+    </div>`;
+    radiosContainer = document.getElementById('radios-container');
+    parent.appendChild(radiosContainer);
+  }
   if (!document.getElementById(`btn-${id}`)) {
     const formBtn = document.createElement('button');
     const closeBtn = document.createElement('button');
@@ -693,6 +759,9 @@ const renderInfo = (event) => {
       taskView_saveProjects[id].checklist.splice(i, 1);
       localStorage.setItem('saveProjects', JSON.stringify(taskView_saveProjects));
       renderInfo(event);
+    }, false);
+    document.getElementById(`btnEdit-${i}`).addEventListener('click', () => {
+      showTaskEditForm(id, i);
     }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);

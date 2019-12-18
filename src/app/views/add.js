@@ -12,7 +12,7 @@ export const addTask = (event) => {
     priority: document.getElementById('top-priority').checked,
   };
   const task = ToDo(taskFormData.title, taskFormData.description,
-    taskFormData.dueDate, taskFormData.priority, false);
+  taskFormData.dueDate, taskFormData.priority, false);
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects[id].checklist.push(task);
   localStorage.setItem('saveProjects', JSON.stringify(saveProjects));

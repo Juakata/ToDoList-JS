@@ -151,14 +151,31 @@ nav {
   border: none;
   position: absolute;
   right: 25px;
-  top: 43px;
-  font-size: 30px;
+  top: 48px;
+  font-size: 22px;
   cursor: pointer;
   color: white;
+  outline: none;
 }
 
 .btn-remove:hover {
   color: #c90c02;
+}
+
+.btn-edit {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 60px;
+  top: 47px;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+  outline: none;
+}
+
+.btn-edit:hover {
+  color: green;
 }
 
 .highlight {

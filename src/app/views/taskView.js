@@ -38,14 +38,23 @@ const createToDo = (id, i, element, priority, list) => {
   const labelBtn = document.createElement('label');
   const checkBox = document.createElement('input');
   const btnRemove = document.createElement('button');
+  const btnEdit = document.createElement('button');
   btnRemove.id = `btnRemove-${i}`;
+  btnEdit.id = `btnEdit-${i}`;
   btnRemove.classList.add('btn-remove');
+  btnEdit.classList.add('btn-edit');
   btnRemove.setAttribute('type', 'button');
+  btnEdit.setAttribute('type', 'button');
   const iRemove = document.createElement('i');
+  const iEdit = document.createElement('i');
   iRemove.classList.add('fa');
   iRemove.classList.add('fa-minus-circle');
+  iEdit.classList.add('fa');
+  iEdit.classList.add('fa-edit');
   btnRemove.appendChild(iRemove);
+  btnEdit.appendChild(iEdit);
   unit.appendChild(btnRemove);
+  unit.appendChild(btnEdit);
   label.classList.add('block-label');
   labelBtn.classList.add('block-label');
   checkBox.setAttribute('type', 'checkbox');
@@ -74,6 +83,17 @@ const createToDo = (id, i, element, priority, list) => {
   }, false);
 };
 
+const editTask = (id, i) => {
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects[id].checklist[i].title = document.getElementById('title').value;
+  saveProjects[id].checklist[i].description = document.getElementById('description').value;
+  saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
+  saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  closeTaskForm();
+  renderInfo(event);
+}
+
 export const closeTaskForm = () => {
   const taskForm = document.getElementById('task__form');
   taskForm.style.display = 'none';
@@ -86,11 +106,57 @@ export const closeTaskForm = () => {
   document.getElementById('dueDate').value = '';
 };
 
+const showTaskEditForm = (id, i) => {
+  const taskForm = document.getElementById('task__form');
+  taskForm.style.display = 'block';
+  const parent = document.querySelector('.form-container');
+  const radiosContainer = document.getElementById('radios-container');
+  if (radiosContainer !== null) {
+    parent.removeChild(radiosContainer);
+  }
+  if (!document.getElementById(`btn-${id}`)) {
+    const formBtn = document.createElement('button');
+    const closeBtn = document.createElement('button');
+    const div = document.createElement('div');
+    div.id = 'btn-container';
+    formBtn.id = `btn-${id}`;
+    closeBtn.id = `btnClose-${id}`;
+    formBtn.classList.add('btn-form');
+    closeBtn.classList.add('btn-close-form');
+    formBtn.setAttribute('type', 'button');
+    closeBtn.setAttribute('type', 'button');
+    formBtn.innerText = 'Edit';
+    closeBtn.innerText = 'Cancel';
+    div.appendChild(formBtn);
+    div.appendChild(closeBtn);
+    taskForm.appendChild(div);
+    document.getElementById('title').value = saveProjects[id].checklist[i].title;
+    document.getElementById('description').value = saveProjects[id].checklist[i].description;
+    document.getElementById('dueDate').value = saveProjects[id].checklist[i].dueDate;
+    formBtn.addEventListener('click', () => {
+      editTask(id, i);
+    }, false);
+    closeBtn.addEventListener('click', closeTaskForm.bind(), false);
+  }
+};
+
 const showTaskForm = (event) => {
   const id = event.target.id.split('-').slice(-1);
   const taskForm = document.getElementById('task__form');
   taskForm.style.display = 'block';
-
+  const parent = document.querySelector('.form-container');
+  let radiosContainer = document.getElementById('radios-container');
+  if (radiosContainer === null) {
+    parent.innerHTML += `<div id="radios-container" class="form-element">
+      <label>Priority:</label>
+      <label for="high-priority">High</label>
+      <input type="radio" name="priority" id="top-priority">
+      <label for="normal-priority">Normal</label>
+      <input type="radio" name="priority" id="normal-priority" checked>
+    </div>`;
+    radiosContainer = document.getElementById('radios-container');
+    parent.appendChild(radiosContainer);
+  }
   if (!document.getElementById(`btn-${id}`)) {
     const formBtn = document.createElement('button');
     const closeBtn = document.createElement('button');
@@ -144,6 +210,9 @@ export const renderInfo = (event) => {
       saveProjects[id].checklist.splice(i, 1);
       localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
       renderInfo(event);
+    }, false);
+    document.getElementById(`btnEdit-${i}`).addEventListener('click', () => {
+      showTaskEditForm(id, i);
     }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);
