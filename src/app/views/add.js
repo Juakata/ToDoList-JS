@@ -12,10 +12,21 @@ export const addTask = (event) => {
     priority: document.getElementById('top-priority').checked,
   };
   const task = ToDo(taskFormData.title, taskFormData.description,
-  taskFormData.dueDate, taskFormData.priority, false);
+    taskFormData.dueDate, taskFormData.priority, false);
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects[id].checklist.push(task);
   localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-  closeTaskForm(event);
+  closeTaskForm();
+  renderInfo(event);
+};
+
+export const editTask = (id, i) => {
+  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  saveProjects[id].checklist[i].title = document.getElementById('title').value;
+  saveProjects[id].checklist[i].description = document.getElementById('description').value;
+  saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
+  saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  closeTaskForm();
   renderInfo(event);
 };

@@ -1,4 +1,4 @@
-import { addTask } from './add';
+import { addTask, editTask } from './add';
 
 let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 
@@ -82,17 +82,6 @@ const createToDo = (id, i, element, priority, list) => {
     markComplete(id, i, checkBox);
   }, false);
 };
-
-const editTask = (id, i) => {
-  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
-  saveProjects[id].checklist[i].title = document.getElementById('title').value;
-  saveProjects[id].checklist[i].description = document.getElementById('description').value;
-  saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
-  saveProjects[id].checklist[i].dueDate = document.getElementById('dueDate').value;
-  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-  closeTaskForm();
-  renderInfo(event);
-}
 
 export const closeTaskForm = () => {
   const taskForm = document.getElementById('task__form');
