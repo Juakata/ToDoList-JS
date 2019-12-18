@@ -553,7 +553,7 @@ let taskView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 
 const highlightElement = (id) => {
   const highlighted = document.querySelectorAll("[id ^= 'projectContainer']");
-  highlighted.forEach((element) => element.classList.remove('highlight'));
+  highlighted.forEach(element => element.classList.remove('highlight'));
   document.getElementById(`projectContainer-${id}`).classList.add('highlight');
 };
 
