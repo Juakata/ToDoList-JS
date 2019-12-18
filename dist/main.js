@@ -525,89 +525,73 @@ const Project = (title, checklist) => {
     checklist
   }
 }
-// CONCATENATED MODULE: ./src/app/views/taskView.js
+// CONCATENATED MODULE: ./src/app/views/add.js
+
 
 
 let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 
-const changePriority = (id, i, event) => {
-  if (saveProjects[id].checklist[i].priority) {
-    saveProjects[id].checklist[i].priority = false;
-  } else {
-    saveProjects[id].checklist[i].priority = true;
-  }
-  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-  renderInfo(event);
-}
-
-const renderInfo = (event) => {
-  const id = event.target.id.split("-").splice(-1);
-  const list = document.getElementById("project__list");
-  highlightElement(id);
-  list.innerHTML = '';
-  const btnAdd = document.createElement('button');
-  btnAdd.classList.add('btn-form');
-  btnAdd.classList.add('add-task');
-  btnAdd.id = `addTask-${id}`;
-  const iPlus = document.createElement("i");
-  iPlus.classList.add('fa');
-  iPlus.classList.add('fa-plus');
+const addTask = (event) => {
+  const id = event.target.id.split('-').slice(-1);
+  const taskFormData = {
+    title: document.getElementById('title').value,
+    description: document.getElementById('description').value,
+    dueDate: document.getElementById('dueDate').value,
+    priority: document.getElementById('top-priority').checked,
+  };
+  const task = ToDo(taskFormData.title, taskFormData.description,
+    taskFormData.dueDate, taskFormData.priority, false);
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
-  btnAdd.appendChild(document.createTextNode(`${saveProjects[id].title} Add Task `));
-  btnAdd.appendChild(iPlus);
-  list.appendChild(btnAdd);
-  saveProjects[id].checklist.forEach((element, i) => {
-    let priority = checkPriority(id, i);
-    createToDo(id, i, element, priority, list, event);
-    document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
-      changePriority(id, i, event);
-    }, false);
-  });
-  const addNew = document.getElementById(`addTask-${id}`);
-  addNew.addEventListener("click", showTaskForm, false);
-  closeTaskForm();
-}
+  saveProjects[id].checklist.push(task);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  closeTaskForm(event);
+  renderInfo(event);
+};
+// CONCATENATED MODULE: ./src/app/views/taskView.js
 
-const showTaskForm = (event) => {
-  const id = event.target.id.split("-").slice(-1);
-  const taskForm = document.getElementById("task__form");
-  taskForm.style.display = "block";
 
-  if (!document.getElementById(`btn-${id}`)) {
-    const formBtn = document.createElement("button");
-    const closeBtn = document.createElement("button");
-    const div = document.createElement("div");
-    div.id = "btn-container";
-    formBtn.id = `btn-${id}`;
-    closeBtn.id = `btnClose-${id}`;
-    formBtn.classList.add('btn-form');
-    closeBtn.classList.add('btn-close-form');
-    formBtn.setAttribute("type", "button");
-    closeBtn.setAttribute("type", "button");
-    formBtn.innerText = "Add";
-    closeBtn.innerText = "Cancel";
-    div.appendChild(formBtn);
-    div.appendChild(closeBtn);
-    taskForm.appendChild(div);
-    formBtn.addEventListener("click", addTask, false);
-    closeBtn.addEventListener('click', closeTaskForm.bind(), false);
+let taskView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+
+const highlightElement = (id) => {
+  const highlighted = document.querySelectorAll("[id ^= 'projectContainer']");
+  highlighted.forEach((element) => element.classList.remove('highlight'));
+  document.getElementById(`projectContainer-${id}`).classList.add('highlight');
+};
+
+const checkPriority = (id, i) => {
+  taskView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  let priority = '';
+  if (taskView_saveProjects[id].checklist[i].priority) {
+    priority = 'High';
+  } else {
+    priority = 'Normal';
   }
-}
+  return priority;
+};
 
-const createToDo = (id, i, element, priority, list, event) => {
+const markComplete = (id, i, checkBox) => {
+  if (checkBox.checked) {
+    taskView_saveProjects[id].checklist[i].completed = true;
+  } else {
+    taskView_saveProjects[id].checklist[i].completed = false;
+  }
+  localStorage.setItem('saveProjects', JSON.stringify(taskView_saveProjects));
+};
+
+const createToDo = (id, i, element, priority, list) => {
   const unit = document.createElement('div');
-  unit.classList.add("task-container");
-  const h21 = document.createElement("h2");
-  const h22 = document.createElement("h2");
-  const h23 = document.createElement("h2");
-  const label = document.createElement("label");
-  const labelBtn = document.createElement("label");
+  unit.classList.add('task-container');
+  const h21 = document.createElement('h2');
+  const h22 = document.createElement('h2');
+  const h23 = document.createElement('h2');
+  const label = document.createElement('label');
+  const labelBtn = document.createElement('label');
   const checkBox = document.createElement('input');
   const btnRemove = document.createElement('button');
   btnRemove.id = `btnRemove-${i}`;
   btnRemove.classList.add('btn-remove');
   btnRemove.setAttribute('type', 'button');
-  const iRemove = document.createElement("i");
+  const iRemove = document.createElement('i');
   iRemove.classList.add('fa');
   iRemove.classList.add('fa-minus-circle');
   btnRemove.appendChild(iRemove);
@@ -615,8 +599,8 @@ const createToDo = (id, i, element, priority, list, event) => {
   label.classList.add('block-label');
   labelBtn.classList.add('block-label');
   checkBox.setAttribute('type', 'checkbox');
-  checkBox.checked = saveProjects[id].checklist[i].completed;
-  checkBox.id = "checkBox";
+  checkBox.checked = taskView_saveProjects[id].checklist[i].completed;
+  checkBox.id = 'checkBox';
   h21.id = 'p-title';
   h21.appendChild(document.createTextNode(element.title));
   h22.appendChild(document.createTextNode(`Description: ${element.description}`));
@@ -628,39 +612,21 @@ const createToDo = (id, i, element, priority, list, event) => {
   unit.appendChild(h21);
   unit.appendChild(h22);
   unit.appendChild(h23);
-  labelBtn.appendChild(document.createTextNode("Priority: "));
+  labelBtn.appendChild(document.createTextNode('Priority: '));
   labelBtn.appendChild(btnP);
   unit.appendChild(labelBtn);
   unit.appendChild(label);
-  label.appendChild(document.createTextNode("Completed: "));
+  label.appendChild(document.createTextNode('Completed: '));
   label.appendChild(checkBox);
   list.appendChild(unit);
-  btnRemove.addEventListener('click', () => {
-    removeTask(id, i, event);
-  }, false);
-  checkBox.addEventListener("click", () => {
+  checkBox.addEventListener('click', () => {
     markComplete(id, i, checkBox);
   }, false);
-}
-
-const removeTask = (id, i, event) => {
-  saveProjects[id].checklist.splice(i, 1);
-  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-  renderInfo(event);
-}
-
-const markComplete = (id, i, checkBox) => {
-  if (checkBox.checked) {
-    saveProjects[id].checklist[i].completed = true;
-  } else {
-    saveProjects[id].checklist[i].completed = false;
-  }
-  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-}
+};
 
 const closeTaskForm = () => {
-  const taskForm = document.getElementById("task__form");
-  taskForm.style.display = "none";
+  const taskForm = document.getElementById('task__form');
+  taskForm.style.display = 'none';
   const btnContainer = document.getElementById('btn-container');
   if (btnContainer !== null) {
     taskForm.removeChild(btnContainer);
@@ -668,40 +634,72 @@ const closeTaskForm = () => {
   document.getElementById('title').value = '';
   document.getElementById('description').value = '';
   document.getElementById('dueDate').value = '';
-}
+};
 
-const addTask = (event) => {
-  const id = event.target.id.split("-").slice(-1);
-  const taskFormData = {
-    title: document.getElementById('title').value,
-    description: document.getElementById('description').value,
-    dueDate: document.getElementById('dueDate').value,
-    priority: document.getElementById('top-priority').checked
-  };
-  const task = ToDo(taskFormData.title, taskFormData.description, taskFormData.dueDate, taskFormData.priority, false);
-  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
-  saveProjects[id].checklist.push(task);
-  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-  closeTaskForm(event);
-  renderInfo(event);
-}
+const showTaskForm = (event) => {
+  const id = event.target.id.split('-').slice(-1);
+  const taskForm = document.getElementById('task__form');
+  taskForm.style.display = 'block';
 
-const checkPriority = (id, i) => {
-  saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
-  let priority = "";
-  if (saveProjects[id].checklist[i].priority) {
-    priority = "High";
-  } else {
-    priority = "Normal";
+  if (!document.getElementById(`btn-${id}`)) {
+    const formBtn = document.createElement('button');
+    const closeBtn = document.createElement('button');
+    const div = document.createElement('div');
+    div.id = 'btn-container';
+    formBtn.id = `btn-${id}`;
+    closeBtn.id = `btnClose-${id}`;
+    formBtn.classList.add('btn-form');
+    closeBtn.classList.add('btn-close-form');
+    formBtn.setAttribute('type', 'button');
+    closeBtn.setAttribute('type', 'button');
+    formBtn.innerText = 'Add';
+    closeBtn.innerText = 'Cancel';
+    div.appendChild(formBtn);
+    div.appendChild(closeBtn);
+    taskForm.appendChild(div);
+    formBtn.addEventListener('click', addTask, false);
+    closeBtn.addEventListener('click', closeTaskForm.bind(), false);
   }
-  return priority;
-}
+};
 
-const highlightElement = (id) => {
-  const highlighted = document.querySelectorAll("[id ^= 'projectContainer']");
-  highlighted.forEach(element => element.classList.remove('highlight'));
-  document.getElementById(`projectContainer-${id}`).classList.add('highlight');
-}
+const renderInfo = (event) => {
+  const id = event.target.id.split('-').splice(-1);
+  const list = document.getElementById('project__list');
+  highlightElement(id);
+  list.innerHTML = '';
+  const btnAdd = document.createElement('button');
+  btnAdd.classList.add('btn-form');
+  btnAdd.classList.add('add-task');
+  btnAdd.id = `addTask-${id}`;
+  const iPlus = document.createElement('i');
+  iPlus.classList.add('fa');
+  iPlus.classList.add('fa-plus');
+  taskView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+  btnAdd.appendChild(document.createTextNode(`${taskView_saveProjects[id].title} Add Task `));
+  btnAdd.appendChild(iPlus);
+  list.appendChild(btnAdd);
+  taskView_saveProjects[id].checklist.forEach((element, i) => {
+    const priority = checkPriority(id, i);
+    createToDo(id, i, element, priority, list, event);
+    document.getElementById(`btnP-${i}-${id}`).addEventListener('click', () => {
+      if (taskView_saveProjects[id].checklist[i].priority) {
+        taskView_saveProjects[id].checklist[i].priority = false;
+      } else {
+        taskView_saveProjects[id].checklist[i].priority = true;
+      }
+      localStorage.setItem('saveProjects', JSON.stringify(taskView_saveProjects));
+      renderInfo(event);
+    }, false);
+    document.getElementById(`btnRemove-${i}`).addEventListener('click', () => {
+      taskView_saveProjects[id].checklist.splice(i, 1);
+      localStorage.setItem('saveProjects', JSON.stringify(taskView_saveProjects));
+      renderInfo(event);
+    }, false);
+  });
+  const addNew = document.getElementById(`addTask-${id}`);
+  addNew.addEventListener('click', showTaskForm, false);
+  closeTaskForm();
+};
 
 // CONCATENATED MODULE: ./src/app/views/projectView.js
 
@@ -709,35 +707,10 @@ const highlightElement = (id) => {
 
 let projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 
-const renderForm = () => {
-  const form = document.getElementById("project__form");
-  const btn = document.getElementById("project__form-btn");
-  form.style.display = "block";
-  btn.addEventListener("click", addProject, false);
-}
-
-const addProject = () => {
-  const formData = {
-    title: document.getElementById('projectTitle')
-  };
-  const project = Project(formData.title.value, []);
-  projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
-  projectView_saveProjects.push(project);
-  localStorage.setItem('saveProjects', JSON.stringify(projectView_saveProjects));
-  renderProjects();
-  hideForm();
-}
-
-const hideForm = () => {
-  const form = document.getElementById("project__form");
-  form.style.display = "none";
-  document.getElementById('projectTitle').value = '';
-}
-
 const renderProjects = () => {
-  const container = document.getElementById("project");
-  container.innerHTML = "";
-  container.innerHTML = `<h1>Projects</h1>`;
+  const container = document.getElementById('project');
+  container.innerHTML = '';
+  container.innerHTML = '<h1>Projects</h1>';
   container.innerHTML += `<nav>
     <ul id="projects-menu">
     </ul>
@@ -746,7 +719,7 @@ const renderProjects = () => {
   projectView_saveProjects.forEach((project, i) => {
     const li = document.createElement('li');
     const span = document.createElement('span');
-    li.id = `projectContainer-${i}`
+    li.id = `projectContainer-${i}`;
     span.id = `project-${i}`;
     const text = document.createTextNode(project.title);
     span.appendChild(text);
@@ -754,22 +727,44 @@ const renderProjects = () => {
     icon.classList.add('fa');
     icon.classList.add('fa-trash');
     icon.id = `i-delete-${i}`;
-    icon.addEventListener("click", deleteProject.bind(), false);
-    span.addEventListener("click", renderInfo.bind(), false);
+    icon.addEventListener('click', () => {
+      projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+      projectView_saveProjects.splice(i, 1);
+      localStorage.setItem('saveProjects', JSON.stringify(projectView_saveProjects));
+      renderProjects();
+      document.getElementById('project__list').innerHTML = '';
+    }, false);
+    span.addEventListener('click', renderInfo, false);
     document.getElementById('projects-menu').appendChild(li);
     li.appendChild(span);
     li.appendChild(icon);
   });
-}
+};
 
-const deleteProject = (event) => {
-  const id = event.target.id.split("-").slice(-1);
+const hideForm = () => {
+  const form = document.getElementById('project__form');
+  form.style.display = 'none';
+  document.getElementById('projectTitle').value = '';
+};
+
+const addProject = () => {
+  const formData = {
+    title: document.getElementById('projectTitle'),
+  };
+  const project = Project(formData.title.value, []);
   projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
-  projectView_saveProjects.splice(id, 1);
+  projectView_saveProjects.push(project);
   localStorage.setItem('saveProjects', JSON.stringify(projectView_saveProjects));
   renderProjects();
-  document.getElementById("project__list").innerHTML = '';
-}
+  hideForm();
+};
+
+const renderForm = () => {
+  const form = document.getElementById('project__form');
+  const btn = document.getElementById('project__form-btn');
+  form.style.display = 'block';
+  btn.addEventListener('click', addProject, false);
+};
 
 // EXTERNAL MODULE: ./src/main.css
 var main = __webpack_require__(0);
