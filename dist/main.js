@@ -546,7 +546,7 @@ const addTask = (event) => {
   renderInfo(event);
 };
 
-const editTask = (id, i) => {
+const editTask = (id, i, event) => {
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects[id].checklist[i].title = document.getElementById('title').value;
   saveProjects[id].checklist[i].description = document.getElementById('description').value;
@@ -655,7 +655,7 @@ const closeTaskForm = () => {
   document.getElementById('dueDate').value = '';
 };
 
-const showTaskEditForm = (id, i) => {
+const showTaskEditForm = (id, i, event) => {
   const taskForm = document.getElementById('task__form');
   taskForm.style.display = 'block';
   const parent = document.querySelector('.form-container');
@@ -683,7 +683,7 @@ const showTaskEditForm = (id, i) => {
     document.getElementById('description').value = taskView_saveProjects[id].checklist[i].description;
     document.getElementById('dueDate').value = taskView_saveProjects[id].checklist[i].dueDate;
     formBtn.addEventListener('click', () => {
-      editTask(id, i);
+      editTask(id, i, event);
     }, false);
     closeBtn.addEventListener('click', closeTaskForm.bind(), false);
   }
@@ -761,7 +761,7 @@ const renderInfo = (event) => {
       renderInfo(event);
     }, false);
     document.getElementById(`btnEdit-${i}`).addEventListener('click', () => {
-      showTaskEditForm(id, i);
+      showTaskEditForm(id, i, event);
     }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);

@@ -95,7 +95,7 @@ export const closeTaskForm = () => {
   document.getElementById('dueDate').value = '';
 };
 
-const showTaskEditForm = (id, i) => {
+const showTaskEditForm = (id, i, event) => {
   const taskForm = document.getElementById('task__form');
   taskForm.style.display = 'block';
   const parent = document.querySelector('.form-container');
@@ -123,7 +123,7 @@ const showTaskEditForm = (id, i) => {
     document.getElementById('description').value = saveProjects[id].checklist[i].description;
     document.getElementById('dueDate').value = saveProjects[id].checklist[i].dueDate;
     formBtn.addEventListener('click', () => {
-      editTask(id, i);
+      editTask(id, i, event);
     }, false);
     closeBtn.addEventListener('click', closeTaskForm.bind(), false);
   }
@@ -201,7 +201,7 @@ export const renderInfo = (event) => {
       renderInfo(event);
     }, false);
     document.getElementById(`btnEdit-${i}`).addEventListener('click', () => {
-      showTaskEditForm(id, i);
+      showTaskEditForm(id, i, event);
     }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);

@@ -20,7 +20,7 @@ export const addTask = (event) => {
   renderInfo(event);
 };
 
-export const editTask = (id, i) => {
+export const editTask = (id, i, event) => {
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects[id].checklist[i].title = document.getElementById('title').value;
   saveProjects[id].checklist[i].description = document.getElementById('description').value;
