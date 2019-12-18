@@ -61,8 +61,6 @@ const deleteProject = (event) => {
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects.splice(id, 1);
   localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-
   renderProjects();
   document.getElementById("project__list").innerHTML = '';
 }
-

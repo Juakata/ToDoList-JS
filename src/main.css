@@ -146,12 +146,28 @@ nav {
   outline: none;
 }
 
+.btn-remove {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 25px;
+  top: 43px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-remove:hover {
+  color: #c90c02;
+}
+
 .highlight {
  background-color: #54a5e8;
  color: white;
 }
 
 .task-container {
+  position: relative;
   margin: 20px 0;
   border-radius: 20px;
   padding: 15px;

@@ -2,6 +2,16 @@ import { ToDo } from '../models/toDo';
 
 let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 
+const changePriority = (id, i, event) => {
+  if (saveProjects[id].checklist[i].priority) {
+    saveProjects[id].checklist[i].priority = false;
+  } else {
+    saveProjects[id].checklist[i].priority = true;
+  }
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  renderInfo(event);
+}
+
 export const renderInfo = (event) => {
   const id = event.target.id.split("-").splice(-1);
   const list = document.getElementById("project__list");
@@ -19,27 +29,15 @@ export const renderInfo = (event) => {
   btnAdd.appendChild(iPlus);
   list.appendChild(btnAdd);
   saveProjects[id].checklist.forEach((element, i) => {
-    const unit = document.createElement('div');
-    unit.classList.add("task-container");
     let priority = checkPriority(id, i);
-    createToDo(id, i, element, priority, list);
+    createToDo(id, i, element, priority, list, event);
     document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
-      changePriority(id, i);
+      changePriority(id, i, event);
     }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);
   addNew.addEventListener("click", showTaskForm, false);
   closeTaskForm();
-}
-
-const changePriority = (id, i) => {
-  if (saveProjects[id].checklist[i].priority) {
-    saveProjects[id].checklist[i].priority = false;
-  } else {
-    saveProjects[id].checklist[i].priority = true;
-  }
-  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-  renderInfo(event);
 }
 
 const showTaskForm = (event) => {
@@ -68,7 +66,7 @@ const showTaskForm = (event) => {
   }
 }
 
-const createToDo = (id, i, element, priority, list) => {
+const createToDo = (id, i, element, priority, list, event) => {
   const unit = document.createElement('div');
   unit.classList.add("task-container");
   const h21 = document.createElement("h2");
@@ -77,6 +75,15 @@ const createToDo = (id, i, element, priority, list) => {
   const label = document.createElement("label");
   const labelBtn = document.createElement("label");
   const checkBox = document.createElement('input');
+  const btnRemove = document.createElement('button');
+  btnRemove.id = `btnRemove-${i}`;
+  btnRemove.classList.add('btn-remove');
+  btnRemove.setAttribute('type', 'button');
+  const iRemove = document.createElement("i");
+  iRemove.classList.add('fa');
+  iRemove.classList.add('fa-minus-circle');
+  btnRemove.appendChild(iRemove);
+  unit.appendChild(btnRemove);
   label.classList.add('block-label');
   labelBtn.classList.add('block-label');
   checkBox.setAttribute('type', 'checkbox');
@@ -100,9 +107,18 @@ const createToDo = (id, i, element, priority, list) => {
   label.appendChild(document.createTextNode("Completed: "));
   label.appendChild(checkBox);
   list.appendChild(unit);
+  btnRemove.addEventListener('click', () => {
+    removeTask(id, i, event);
+  }, false);
   checkBox.addEventListener("click", () => {
     markComplete(id, i, checkBox);
   }, false);
+}
+
+const removeTask = (id, i, event) => {
+  saveProjects[id].checklist.splice(i, 1);
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  renderInfo(event);
 }
 
 const markComplete = (id, i, checkBox) => {
@@ -117,6 +133,10 @@ const markComplete = (id, i, checkBox) => {
 const closeTaskForm = () => {
   const taskForm = document.getElementById("task__form");
   taskForm.style.display = "none";
+  const btnContainer = document.getElementById('btn-container');
+  if (btnContainer !== null) {
+    taskForm.removeChild(btnContainer);
+  }
   document.getElementById('title').value = '';
   document.getElementById('description').value = '';
   document.getElementById('dueDate').value = '';
