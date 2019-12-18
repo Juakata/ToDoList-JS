@@ -509,22 +509,20 @@ module.exports = function (list, options) {
 __webpack_require__.r(__webpack_exports__);
 
 // CONCATENATED MODULE: ./src/app/models/toDo.js
-const ToDo = (title, description, dueDate, priority, completed) => {
-  return {
-    title,
-    description,
-    dueDate,
-    priority,
-    completed
-  }
-}
+const ToDo = (title, description, dueDate, priority, completed) => ({
+  title,
+  description,
+  dueDate,
+  priority,
+  completed,
+});
+
 // CONCATENATED MODULE: ./src/app/models/project.js
-const Project = (title, checklist) => {
-  return {
-    title,
-    checklist
-  }
-}
+const Project = (title, checklist) => ({
+  title,
+  checklist,
+});
+
 // CONCATENATED MODULE: ./src/app/views/add.js
 
 
@@ -547,6 +545,7 @@ const addTask = (event) => {
   closeTaskForm(event);
   renderInfo(event);
 };
+
 // CONCATENATED MODULE: ./src/app/views/taskView.js
 
 
@@ -776,13 +775,13 @@ var main = __webpack_require__(0);
 
 
 
-const p = Project("Project 1", []);
-const p2 = Project("Project 2", []);
+const p = Project('Project 1', []);
+const p2 = Project('Project 2', []);
 
-const src_task = ToDo("Task 1", "Desc of task 1", "2019-12-12", false, false);
-const task2 = ToDo("Task 2", "Desc of task 2", "2019-12-12", true, false);
-const task3 = ToDo("Task 3", "Desc of task 3", "2019-12-12", true, false);
-const task4 = ToDo("Task 4", "Desc of task 4", "2019-12-12", false, false);
+const src_task = ToDo('Task 1', 'Desc of task 1', '2019-12-12', false, false);
+const task2 = ToDo('Task 2', 'Desc of task 2', '2019-12-12', true, false);
+const task3 = ToDo('Task 3', 'Desc of task 3', '2019-12-12', true, false);
+const task4 = ToDo('Task 4', 'Desc of task 4', '2019-12-12', false, false);
 
 p.checklist.push(src_task);
 p.checklist.push(task2);
@@ -799,8 +798,8 @@ if (src_saveProjects == null) {
   localStorage.setItem('saveProjects', JSON.stringify(src_saveProjects));
 }
 
-const newProject = document.getElementById("newProject");
-newProject.addEventListener("click", renderForm, false);
+const newProject = document.getElementById('newProject');
+newProject.addEventListener('click', renderForm, false);
 
 renderProjects();
 

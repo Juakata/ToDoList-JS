@@ -4,13 +4,13 @@ import * as projectView from './app/views/projectView';
 import './main.css';
 
 
-const p = Project("Project 1", []);
-const p2 = Project("Project 2", []);
+const p = Project('Project 1', []);
+const p2 = Project('Project 2', []);
 
-const task = ToDo("Task 1", "Desc of task 1", "2019-12-12", false, false);
-const task2 = ToDo("Task 2", "Desc of task 2", "2019-12-12", true, false);
-const task3 = ToDo("Task 3", "Desc of task 3", "2019-12-12", true, false);
-const task4 = ToDo("Task 4", "Desc of task 4", "2019-12-12", false, false);
+const task = ToDo('Task 1', 'Desc of task 1', '2019-12-12', false, false);
+const task2 = ToDo('Task 2', 'Desc of task 2', '2019-12-12', true, false);
+const task3 = ToDo('Task 3', 'Desc of task 3', '2019-12-12', true, false);
+const task4 = ToDo('Task 4', 'Desc of task 4', '2019-12-12', false, false);
 
 p.checklist.push(task);
 p.checklist.push(task2);
@@ -27,8 +27,8 @@ if (saveProjects == null) {
   localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
 }
 
-const newProject = document.getElementById("newProject");
-newProject.addEventListener("click", projectView.renderForm, false);
+const newProject = document.getElementById('newProject');
+newProject.addEventListener('click', projectView.renderForm, false);
 
 projectView.renderProjects();
 

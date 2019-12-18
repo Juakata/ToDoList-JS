@@ -1,9 +1,7 @@
-export const ToDo = (title, description, dueDate, priority, completed) => {
-  return {
-    title,
-    description,
-    dueDate,
-    priority,
-    completed
-  }
-}
+export const ToDo = (title, description, dueDate, priority, completed) => ({
+  title,
+  description,
+  dueDate,
+  priority,
+  completed,
+});

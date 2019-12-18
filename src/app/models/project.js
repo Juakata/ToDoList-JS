@@ -1,6 +1,4 @@
-export const Project = (title, checklist) => {
-  return {
-    title,
-    checklist
-  }
-}
+export const Project = (title, checklist) => ({
+  title,
+  checklist,
+});
