@@ -4,6 +4,10 @@
           box-sizing: border-box;
 }
 
+button > * {
+    pointer-events: none;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -140,6 +144,11 @@ nav {
 
 #priority-btn:focus {
   outline: none;
+}
+
+.highlight {
+ background-color: #54a5e8;
+ color: white;
 }
 
 .task-container {

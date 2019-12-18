@@ -6,4 +6,4 @@ export const ToDo = (title, description, dueDate, priority, completed) => {
     priority,
     completed
   }
-};
+}

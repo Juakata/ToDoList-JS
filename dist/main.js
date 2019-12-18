@@ -114,7 +114,7 @@ if (content.locals) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(2);
 exports = module.exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "* {\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Lato', sans-serif;\n}\n\nheader {\n  width: 100%;\n  box-shadow: 1px 1px 3px grey;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  z-index: 2;\n}\n\nmain {\n  display: grid;\n  grid-template-columns: 20% 80%;\n}\n\nnav {\n  margin-top: 56px;\n}\n\n#project__form {\n  display: none;\n  width: 25%;\n  position: fixed;\n  background: white;\n  z-index: 3;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 20%;\n  padding: 30px;\n  box-shadow: 1px 1px 10px black;\n  border-radius: 20px;\n  text-align: center;\n}\n\n#task__form {\n  display: none;\n  width: 20%;\n  background: white;\n  position: fixed;\n  z-index: 20;\n  box-shadow: 1px 1px 5px black;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 30%;\n  border-radius: 10px;\n  padding: 20px;\n  text-align: center;\n}\n\n#newProject {\n  padding: 10px;\n  font-size: 20px;\n  border-radius: 10px;\n  background: none;\n  color: #54a5e8;\n  font-weight: bold;\n  border: none;\n  box-shadow: 2px 2px 1px #54a5e8;\n  cursor: pointer;\n  outline: none;\n  border: 1px solid #54a5e8;\n}\n\n#newProject:active {\n  box-shadow: -2px -2px 1px #54a5e8;\n}\n\n#btn-close, .btn-close-form {\n  border: 1px solid red;\n  background: red;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#btn-close:hover {\n  color: red;\n  background: none;\n}\n\n#project__form-btn, .btn-form {\n  border: 1px solid green;\n  background: green;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#projects-menu {\n  margin: 0;\n  padding: 0;\n}\n\n#project__form-btn:hover {\n  color: green;\n  background: none;\n}\n\n#projects-menu li span{\n  display: inline-block;\n  width: 75%;\n  padding: 15px;\n  cursor: pointer;\n}\n\n#project__list {\n  position: relative;\n  z-index: 1;\n  padding: 20px;\n}\n\n#p-title {\n  text-align: center;\n  background: #fc7703;\n  color: white;\n  padding: 10px;\n}\n\n#priority-btn {\n\n  padding: 10px 20px;\n}\n\n#priority-btn:focus {\n  outline: none;\n}\n\n.task-container {\n  margin: 20px 0;\n  border-radius: 20px;\n  padding: 15px;\n  box-shadow: 1px 1px 6px grey;\n}\n\n.normal {\n  border: 1px solid lightskyblue;\n  background-color: lightskyblue;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.block-label {\n  display: block;\n  font-weight: bold;\n  padding: 5px;\n}\n\n.high {\n  border: 1px solid red;\n  background-color: red;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.btn-close-form:hover {\n  color: red;\n  background: none;\n}\n\n.btn-form {\n  margin-right: 5px;\n}\n\n.add-task {\n  font-size: 20px;\n  padding: 10px;\n}\n\n.btn-form:hover {\n  color: green;\n  background: none;\n}\n\n.sidemenu {\n  box-shadow: 1px 1px 2px grey;\n  position: relative;\n  z-index: 1;\n}\n\n.sidemenu h1 {\n  width: 100%;\n  text-align: center;\n  background: #59a4ff;\n  color: white;\n  margin: 0;\n  padding: 10px;\n  box-shadow: 1px 1px 3px grey;\n  position: absolute;\n  z-index: 0;\n}\n\n.sidemenu li {\n  list-style: none;\n  font-size: 20px;\n}\n\n.sidemenu li:hover {\n  background: #54a5e8;\n  color: white;\n}\n\n.sidemenu li i{\n  color: black;\n  margin-left: 20px;\n  cursor: pointer;\n}\n\n.sidemenu li i:hover{\n  color: red;\n}\n\n.form-container {\n  display: inline-block;\n  text-align: left;\n}\n\n.form-element {\n  padding: 7px;\n}\n\n.form-element label{\n  font-weight: bold;\n  color: #2067a1;\n}\n\n.form-element input {\n  width: 100%;\n  border-radius: 8px;\n  border: none;\n  border: 1px solid #69a2d1;\n  box-shadow: 1px 1px 3px #2067a1;\n  outline: none;\n  padding: 5px;\n}\n\n.form-element input[type=radio] {\n  width: auto;\n  border: none;\n  box-shadow: none;\n}\n\n.center {\n  text-align: center;\n}\n\n.list-tasks{\n  margin-left: 20px;\n}\n\n@media(max-width: 1410px) {\n  #project__form{\n    width: 35%;\n  }\n}\n\n@media(max-width: 935px) {\n  #project__form{\n    width: 45%;\n  }\n\n  #task__form {\n    width: 40%;\n  }\n}\n\n@media(max-width: 720px) {\n  #project__form{\n    width: 55%;\n  }\n}\n\n@media(max-width: 590px) {\n  #project__form{\n    width: 65%;\n  }\n\n  #task__form {\n    width: 50%;\n  }\n}\n", ""]);
+exports.push([module.i, "* {\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\nbutton > * {\n    pointer-events: none;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'Lato', sans-serif;\n}\n\nheader {\n  width: 100%;\n  box-shadow: 1px 1px 3px grey;\n  text-align: center;\n  padding: 20px;\n  position: relative;\n  z-index: 2;\n}\n\nmain {\n  display: grid;\n  grid-template-columns: 20% 80%;\n}\n\nnav {\n  margin-top: 56px;\n}\n\n#project__form {\n  display: none;\n  width: 25%;\n  position: fixed;\n  background: white;\n  z-index: 3;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 20%;\n  padding: 30px;\n  box-shadow: 1px 1px 10px black;\n  border-radius: 20px;\n  text-align: center;\n}\n\n#task__form {\n  display: none;\n  width: 20%;\n  background: white;\n  position: fixed;\n  z-index: 20;\n  box-shadow: 1px 1px 5px black;\n  left: 0;\n  right: 0;\n  margin: auto;\n  top: 30%;\n  border-radius: 10px;\n  padding: 20px;\n  text-align: center;\n}\n\n#newProject {\n  padding: 10px;\n  font-size: 20px;\n  border-radius: 10px;\n  background: none;\n  color: #54a5e8;\n  font-weight: bold;\n  border: none;\n  box-shadow: 2px 2px 1px #54a5e8;\n  cursor: pointer;\n  outline: none;\n  border: 1px solid #54a5e8;\n}\n\n#newProject:active {\n  box-shadow: -2px -2px 1px #54a5e8;\n}\n\n#btn-close, .btn-close-form {\n  border: 1px solid red;\n  background: red;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#btn-close:hover {\n  color: red;\n  background: none;\n}\n\n#project__form-btn, .btn-form {\n  border: 1px solid green;\n  background: green;\n  color: white;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  cursor: pointer;\n}\n\n#projects-menu {\n  margin: 0;\n  padding: 0;\n}\n\n#project__form-btn:hover {\n  color: green;\n  background: none;\n}\n\n#projects-menu li span{\n  display: inline-block;\n  width: 75%;\n  padding: 15px;\n  cursor: pointer;\n}\n\n#project__list {\n  position: relative;\n  z-index: 1;\n  padding: 20px;\n}\n\n#p-title {\n  text-align: center;\n  background: #fc7703;\n  color: white;\n  padding: 10px;\n}\n\n#priority-btn {\n\n  padding: 10px 20px;\n}\n\n#priority-btn:focus {\n  outline: none;\n}\n\n.highlight {\n background-color: #54a5e8;\n color: white;\n}\n\n.task-container {\n  margin: 20px 0;\n  border-radius: 20px;\n  padding: 15px;\n  box-shadow: 1px 1px 6px grey;\n}\n\n.normal {\n  border: 1px solid lightskyblue;\n  background-color: lightskyblue;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.block-label {\n  display: block;\n  font-weight: bold;\n  padding: 5px;\n}\n\n.high {\n  border: 1px solid red;\n  background-color: red;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 5px;\n}\n\n.btn-close-form:hover {\n  color: red;\n  background: none;\n}\n\n.btn-form {\n  margin-right: 5px;\n}\n\n.add-task {\n  font-size: 20px;\n  padding: 10px;\n}\n\n.btn-form:hover {\n  color: green;\n  background: none;\n}\n\n.sidemenu {\n  box-shadow: 1px 1px 2px grey;\n  position: relative;\n  z-index: 1;\n}\n\n.sidemenu h1 {\n  width: 100%;\n  text-align: center;\n  background: #59a4ff;\n  color: white;\n  margin: 0;\n  padding: 10px;\n  box-shadow: 1px 1px 3px grey;\n  position: absolute;\n  z-index: 0;\n}\n\n.sidemenu li {\n  list-style: none;\n  font-size: 20px;\n}\n\n.sidemenu li:hover {\n  background: #54a5e8;\n  color: white;\n}\n\n.sidemenu li i{\n  color: black;\n  margin-left: 20px;\n  cursor: pointer;\n}\n\n.sidemenu li i:hover{\n  color: red;\n}\n\n.form-container {\n  display: inline-block;\n  text-align: left;\n}\n\n.form-element {\n  padding: 7px;\n}\n\n.form-element label{\n  font-weight: bold;\n  color: #2067a1;\n}\n\n.form-element input {\n  width: 100%;\n  border-radius: 8px;\n  border: none;\n  border: 1px solid #69a2d1;\n  box-shadow: 1px 1px 3px #2067a1;\n  outline: none;\n  padding: 5px;\n}\n\n.form-element input[type=radio] {\n  width: auto;\n  border: none;\n  box-shadow: none;\n}\n\n.center {\n  text-align: center;\n}\n\n.list-tasks{\n  margin-left: 20px;\n}\n\n@media(max-width: 1410px) {\n  #project__form{\n    width: 35%;\n  }\n}\n\n@media(max-width: 935px) {\n  #project__form{\n    width: 45%;\n  }\n\n  #task__form {\n    width: 40%;\n  }\n}\n\n@media(max-width: 720px) {\n  #project__form{\n    width: 55%;\n  }\n}\n\n@media(max-width: 590px) {\n  #project__form{\n    width: 65%;\n  }\n\n  #task__form {\n    width: 50%;\n  }\n}\n", ""]);
 
 
 /***/ }),
@@ -517,7 +517,7 @@ const ToDo = (title, description, dueDate, priority, completed) => {
     priority,
     completed
   }
-};
+}
 // CONCATENATED MODULE: ./src/app/models/project.js
 const Project = (title, checklist) => {
   return {
@@ -533,6 +533,7 @@ let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 const renderInfo = (event) => {
   const id = event.target.id.split("-").splice(-1);
   const list = document.getElementById("project__list");
+  highlightElement(id);
   list.innerHTML = '';
   const btnAdd = document.createElement('button');
   btnAdd.classList.add('btn-form');
@@ -549,58 +550,27 @@ const renderInfo = (event) => {
     const unit = document.createElement('div');
     unit.classList.add("task-container");
     let priority = checkPriority(id, i);
-    const h21 = document.createElement("h2");
-    const h22 = document.createElement("h2");
-    const h23 = document.createElement("h2");
-    const label = document.createElement("label");
-    const labelBtn = document.createElement("label");
-    const checkBox = document.createElement('input');
-    label.classList.add('block-label');
-    labelBtn.classList.add('block-label');
-    checkBox.setAttribute('type', 'checkbox');
-    checkBox.checked = saveProjects[id].checklist[i].completed;
-    h21.id = 'p-title';
-    h21.appendChild(document.createTextNode(element.title));
-    h22.appendChild(document.createTextNode(`Description: ${element.description}`));
-    h23.appendChild(document.createTextNode(`Deadline: ${element.dueDate}`));
-    const btnP = document.createElement('button');
-    btnP.classList.add(priority.toLowerCase());
-    btnP.appendChild(document.createTextNode(checkPriority(id, i)));
-    btnP.id = `btnP-${i}-${id}`;
-    unit.appendChild(h21);
-    unit.appendChild(h22);
-    unit.appendChild(h23);
-    labelBtn.appendChild(document.createTextNode("Priority: "));
-    labelBtn.appendChild(btnP);
-    unit.appendChild(labelBtn);
-    unit.appendChild(label);
-    label.appendChild(document.createTextNode("Completed: "));
-    label.appendChild(checkBox);
-    list.appendChild(unit);
+    createToDo(id, i, element, priority, list);
     document.getElementById(`btnP-${i}-${id}`).addEventListener("click", () => {
-      if (saveProjects[id].checklist[i].priority) {
-        saveProjects[id].checklist[i].priority = false;
-      } else {
-        saveProjects[id].checklist[i].priority = true;
-      }
-      localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-      renderInfo(event);
-    }, false);
-    checkBox.addEventListener("click", () => {
-      if (checkBox.checked) {
-        saveProjects[id].checklist[i].completed = true;
-      } else {
-        saveProjects[id].checklist[i].completed = false;
-      }
-      localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
-      renderInfo(event);
+      changePriority(id, i);
     }, false);
   });
   const addNew = document.getElementById(`addTask-${id}`);
   addNew.addEventListener("click", showTaskForm, false);
+  closeTaskForm();
 }
 
-function showTaskForm(event) {
+const changePriority = (id, i) => {
+  if (saveProjects[id].checklist[i].priority) {
+    saveProjects[id].checklist[i].priority = false;
+  } else {
+    saveProjects[id].checklist[i].priority = true;
+  }
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+  renderInfo(event);
+}
+
+const showTaskForm = (event) => {
   const id = event.target.id.split("-").slice(-1);
   const taskForm = document.getElementById("task__form");
   taskForm.style.display = "block";
@@ -626,16 +596,61 @@ function showTaskForm(event) {
   }
 }
 
-function closeTaskForm() {
+const createToDo = (id, i, element, priority, list) => {
+  const unit = document.createElement('div');
+  unit.classList.add("task-container");
+  const h21 = document.createElement("h2");
+  const h22 = document.createElement("h2");
+  const h23 = document.createElement("h2");
+  const label = document.createElement("label");
+  const labelBtn = document.createElement("label");
+  const checkBox = document.createElement('input');
+  label.classList.add('block-label');
+  labelBtn.classList.add('block-label');
+  checkBox.setAttribute('type', 'checkbox');
+  checkBox.checked = saveProjects[id].checklist[i].completed;
+  checkBox.id = "checkBox";
+  h21.id = 'p-title';
+  h21.appendChild(document.createTextNode(element.title));
+  h22.appendChild(document.createTextNode(`Description: ${element.description}`));
+  h23.appendChild(document.createTextNode(`Deadline: ${element.dueDate}`));
+  const btnP = document.createElement('button');
+  btnP.classList.add(priority.toLowerCase());
+  btnP.appendChild(document.createTextNode(checkPriority(id, i)));
+  btnP.id = `btnP-${i}-${id}`;
+  unit.appendChild(h21);
+  unit.appendChild(h22);
+  unit.appendChild(h23);
+  labelBtn.appendChild(document.createTextNode("Priority: "));
+  labelBtn.appendChild(btnP);
+  unit.appendChild(labelBtn);
+  unit.appendChild(label);
+  label.appendChild(document.createTextNode("Completed: "));
+  label.appendChild(checkBox);
+  list.appendChild(unit);
+  checkBox.addEventListener("click", () => {
+    markComplete(id, i, checkBox);
+  }, false);
+}
+
+const markComplete = (id, i, checkBox) => {
+  if (checkBox.checked) {
+    saveProjects[id].checklist[i].completed = true;
+  } else {
+    saveProjects[id].checklist[i].completed = false;
+  }
+  localStorage.setItem('saveProjects', JSON.stringify(saveProjects));
+}
+
+const closeTaskForm = () => {
   const taskForm = document.getElementById("task__form");
   taskForm.style.display = "none";
-  taskForm.removeChild(document.getElementById(`btn-container`));
   document.getElementById('title').value = '';
   document.getElementById('description').value = '';
   document.getElementById('dueDate').value = '';
 }
 
-function addTask(event) {
+const addTask = (event) => {
   const id = event.target.id.split("-").slice(-1);
   const taskFormData = {
     title: document.getElementById('title').value,
@@ -651,7 +666,7 @@ function addTask(event) {
   renderInfo(event);
 }
 
-function checkPriority(id, i) {
+const checkPriority = (id, i) => {
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   let priority = "";
   if (saveProjects[id].checklist[i].priority) {
@@ -661,6 +676,13 @@ function checkPriority(id, i) {
   }
   return priority;
 }
+
+const highlightElement = (id) => {
+  const highlighted = document.querySelectorAll("[id ^= 'projectContainer']");
+  highlighted.forEach(element => element.classList.remove('highlight'));
+  document.getElementById(`projectContainer-${id}`).classList.add('highlight');
+}
+
 // CONCATENATED MODULE: ./src/app/views/projectView.js
 
 
@@ -674,7 +696,7 @@ const renderForm = () => {
   btn.addEventListener("click", addProject, false);
 }
 
-function addProject() {
+const addProject = () => {
   const formData = {
     title: document.getElementById('projectTitle')
   };
@@ -704,6 +726,7 @@ const renderProjects = () => {
   projectView_saveProjects.forEach((project, i) => {
     const li = document.createElement('li');
     const span = document.createElement('span');
+    li.id = `projectContainer-${i}`
     span.id = `project-${i}`;
     const text = document.createTextNode(project.title);
     span.appendChild(text);
@@ -719,7 +742,7 @@ const renderProjects = () => {
   });
 }
 
-function deleteProject(event) {
+const deleteProject = (event) => {
   const id = event.target.id.split("-").slice(-1);
   projectView_saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   projectView_saveProjects.splice(id, 1);
@@ -728,6 +751,7 @@ function deleteProject(event) {
   renderProjects();
   document.getElementById("project__list").innerHTML = '';
 }
+
 
 // EXTERNAL MODULE: ./src/main.css
 var main = __webpack_require__(0);

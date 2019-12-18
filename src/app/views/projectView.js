@@ -10,7 +10,7 @@ export const renderForm = () => {
   btn.addEventListener("click", addProject, false);
 }
 
-function addProject() {
+const addProject = () => {
   const formData = {
     title: document.getElementById('projectTitle')
   };
@@ -40,6 +40,7 @@ export const renderProjects = () => {
   saveProjects.forEach((project, i) => {
     const li = document.createElement('li');
     const span = document.createElement('span');
+    li.id = `projectContainer-${i}`
     span.id = `project-${i}`;
     const text = document.createTextNode(project.title);
     span.appendChild(text);
@@ -55,7 +56,7 @@ export const renderProjects = () => {
   });
 }
 
-function deleteProject(event) {
+const deleteProject = (event) => {
   const id = event.target.id.split("-").slice(-1);
   saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
   saveProjects.splice(id, 1);
@@ -64,3 +65,4 @@ function deleteProject(event) {
   renderProjects();
   document.getElementById("project__list").innerHTML = '';
 }
+
