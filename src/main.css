@@ -34,7 +34,7 @@ nav {
 
 #project__form {
   display: none;
-  width: 25%;
+  max-width: 400px;
   position: fixed;
   background: white;
   z-index: 3;
@@ -50,7 +50,7 @@ nav {
 
 #task__form {
   display: none;
-  width: 20%;
+  max-width: 450px;
   background: white;
   position: fixed;
   z-index: 20;
@@ -130,7 +130,7 @@ nav {
   padding: 20px;
 }
 
-#p-title {
+.p-title {
   text-align: center;
   background: #fc7703;
   color: white;
@@ -308,34 +308,16 @@ nav {
   margin-left: 20px;
 }
 
-@media(max-width: 1410px) {
-  #project__form{
-    width: 35%;
-  }
-}
-
-@media(max-width: 935px) {
-  #project__form{
-    width: 45%;
+@media(max-width: 980px) {
+  main {
+      grid-template-columns: 100%;
   }
 
-  #task__form {
-    width: 40%;
-  }
-}
-
-@media(max-width: 720px) {
-  #project__form{
-    width: 55%;
-  }
-}
-
-@media(max-width: 590px) {
-  #project__form{
-    width: 65%;
-  }
-
-  #task__form {
-    width: 50%;
+  .sidemenu {
+    position: fixed;
+    background: white;
+    z-index: 20;
+    transform: translateX(-250px);
+    transition: transform 0.7s ease-in-out;
   }
 }

@@ -60,7 +60,7 @@ const createToDo = (id, i, element, priority, list) => {
   checkBox.setAttribute('type', 'checkbox');
   checkBox.checked = saveProjects[id].checklist[i].completed;
   checkBox.id = 'checkBox';
-  h21.id = 'p-title';
+  h21.classList.add('p-title');
   h21.appendChild(document.createTextNode(element.title));
   h22.appendChild(document.createTextNode(`Description: ${element.description}`));
   h23.appendChild(document.createTextNode(`Deadline: ${element.dueDate}`));
