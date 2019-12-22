@@ -18,6 +18,18 @@ p2.checklist.push(task3);
 p2.checklist.push(task4);
 
 let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
+const iOpenMenu = document.getElementById('open-sidemenu');
+
+function openMenu() {
+  const sideMenu = document.getElementById('project');
+  if (iOpenMenu.className === 'fa fa-bars') {
+    iOpenMenu.className = 'fa fa-times';
+    sideMenu.style.transform = 'translateX(0)';
+  } else {
+    iOpenMenu.className = 'fa fa-bars';
+    sideMenu.style.transform = 'translateX(-250px)';
+  }
+}
 
 if (saveProjects == null) {
   localStorage.setItem('saveProjects', JSON.stringify([]));
@@ -31,5 +43,5 @@ const newProject = document.getElementById('newProject');
 newProject.addEventListener('click', projectView.renderForm, false);
 
 projectView.renderProjects();
-
+iOpenMenu.addEventListener('click', openMenu, false);
 document.getElementById('btn-close').addEventListener('click', projectView.hideForm, false);

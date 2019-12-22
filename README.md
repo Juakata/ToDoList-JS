@@ -1,6 +1,6 @@
 # ToDoList-JS
 
-> This project is a Todo List built with JavaScript. You can add projects and in each project you can add several tasks that have a priority, dueDate, title and description. 
+> This project is a Todo List built with JavaScript. You can add projects and in each project you can add several tasks that have a priority, dueDate, title and description.
 
 ![library](https://user-images.githubusercontent.com/11781597/71129502-362df480-21b5-11ea-8f7e-cc78d4383143.png)
 
@@ -14,7 +14,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://raw.githack.com/Juakata/ToDoList-JS/feature/dist/index.html)
+[Live Demo Link](https://raw.githack.com/Juakata/ToDoList-JS/development/dist/index.html)
 
 ## Installation
 

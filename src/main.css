@@ -34,7 +34,7 @@ nav {
 
 #project__form {
   display: none;
-  width: 25%;
+  max-width: 400px;
   position: fixed;
   background: white;
   z-index: 3;
@@ -50,7 +50,7 @@ nav {
 
 #task__form {
   display: none;
-  width: 20%;
+  max-width: 450px;
   background: white;
   position: fixed;
   z-index: 20;
@@ -130,13 +130,6 @@ nav {
   padding: 20px;
 }
 
-#p-title {
-  text-align: center;
-  background: #fc7703;
-  color: white;
-  padding: 10px;
-}
-
 #priority-btn {
 
   padding: 10px 20px;
@@ -144,6 +137,10 @@ nav {
 
 #priority-btn:focus {
   outline: none;
+}
+
+.fa-bars {
+  display: none;
 }
 
 .btn-remove {
@@ -160,6 +157,13 @@ nav {
 
 .btn-remove:hover {
   color: #c90c02;
+}
+
+.p-title {
+  text-align: center;
+  background: #fc7703;
+  color: white;
+  padding: 10px;
 }
 
 .btn-edit {
@@ -308,34 +312,43 @@ nav {
   margin-left: 20px;
 }
 
-@media(max-width: 1410px) {
-  #project__form{
-    width: 35%;
+@media(max-width: 980px) {
+  main {
+      grid-template-columns: 100%;
+  }
+
+  .sidemenu {
+    position: fixed;
+    width: 80%;
+    background: white;
+    z-index: 20;
+    transform: translateX(-250px);
+    transition: transform 0.7s ease-in-out;
+  }
+
+  .fa-bars, .fa-times {
+    display: inline-block;
+    float: left;
+    font-size: 45px;
+    color: #0093b0;
+    cursor: pointer;
   }
 }
 
-@media(max-width: 935px) {
-  #project__form{
-    width: 45%;
+@media(max-width: 420px) {
+  #project__form, #task__form {
+    margin: 0 10px;
   }
 
-  #task__form {
-    width: 40%;
-  }
-}
-
-@media(max-width: 720px) {
-  #project__form{
-    width: 55%;
-  }
-}
-
-@media(max-width: 590px) {
-  #project__form{
-    width: 65%;
+  .p-title {
+    text-align: left;
   }
 
-  #task__form {
-    width: 50%;
+  .task-container {
+    font-size: 13px;
+  }
+
+  .btn-edit, .btn-remove {
+    top: 40px;
   }
 }
