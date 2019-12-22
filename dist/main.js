@@ -866,7 +866,7 @@ window.onload = () => {
   if (document.body.clientWidth <= 980) {
     sideMenu.style.transform = `translateX(-${width}px)`;
   }
-}
+};
 
 window.onresize = () => {
   const sideMenu = document.getElementById('project');
@@ -874,8 +874,8 @@ window.onresize = () => {
   if (document.body.clientWidth > 980) {
     iOpenMenu.className = 'fa fa-bars';
     iOpenMenu.style.display = 'none';
-    sideMenu.style.transform = 'translateX(0)'
-      sideMenu.style.top = '0';
+    sideMenu.style.transform = 'translateX(0)';
+    sideMenu.style.top = '0';
   } else {
     iOpenMenu.style = 'inline-block';
     iOpenMenu.className = 'fa fa-bars';
@@ -883,7 +883,7 @@ window.onresize = () => {
     sideMenu.style.transform = `translateX(-${width}px)`;
     sideMenu.style.top = '87px';
   }
-}
+};
 
 function openMenu() {
   const sideMenu = document.getElementById('project');
