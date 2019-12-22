@@ -130,13 +130,6 @@ nav {
   padding: 20px;
 }
 
-.p-title {
-  text-align: center;
-  background: #fc7703;
-  color: white;
-  padding: 10px;
-}
-
 #priority-btn {
 
   padding: 10px 20px;
@@ -144,6 +137,10 @@ nav {
 
 #priority-btn:focus {
   outline: none;
+}
+
+.fa-bars {
+  display: none;
 }
 
 .btn-remove {
@@ -160,6 +157,13 @@ nav {
 
 .btn-remove:hover {
   color: #c90c02;
+}
+
+.p-title {
+  text-align: center;
+  background: #fc7703;
+  color: white;
+  padding: 10px;
 }
 
 .btn-edit {
@@ -315,9 +319,36 @@ nav {
 
   .sidemenu {
     position: fixed;
+    width: 80%;
     background: white;
     z-index: 20;
     transform: translateX(-250px);
     transition: transform 0.7s ease-in-out;
+  }
+
+  .fa-bars, .fa-times {
+    display: inline-block;
+    float: left;
+    font-size: 45px;
+    color: #0093b0;
+    cursor: pointer;
+  }
+}
+
+@media(max-width: 420px) {
+  #project__form, #task__form {
+    margin: 0 10px;
+  }
+
+  .p-title {
+    text-align: left;
+  }
+
+  .task-container {
+    font-size: 13px;
+  }
+
+  .btn-edit, .btn-remove {
+    top: 40px;
   }
 }
