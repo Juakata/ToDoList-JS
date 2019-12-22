@@ -20,14 +20,40 @@ p2.checklist.push(task4);
 let saveProjects = JSON.parse(localStorage.getItem('saveProjects'));
 const iOpenMenu = document.getElementById('open-sidemenu');
 
+window.onload = () => {
+  const sideMenu = document.getElementById('project');
+  const width = sideMenu.clientWidth;
+  if (document.body.clientWidth <= 980) {
+    sideMenu.style.transform = `translateX(-${width}px)`;
+  }
+}
+
+window.onresize = () => {
+  const sideMenu = document.getElementById('project');
+  const width = sideMenu.clientWidth;
+  if (document.body.clientWidth > 980) {
+    iOpenMenu.className = 'fa fa-bars';
+    iOpenMenu.style.display = 'none';
+    sideMenu.style.transform = 'translateX(0)'
+      sideMenu.style.top = '0';
+  } else {
+    iOpenMenu.style = 'inline-block';
+    iOpenMenu.className = 'fa fa-bars';
+    sideMenu.position = 'fixed';
+    sideMenu.style.transform = `translateX(-${width}px)`;
+    sideMenu.style.top = '87px';
+  }
+}
+
 function openMenu() {
   const sideMenu = document.getElementById('project');
+  const width = sideMenu.clientWidth;
   if (iOpenMenu.className === 'fa fa-bars') {
     iOpenMenu.className = 'fa fa-times';
     sideMenu.style.transform = 'translateX(0)';
   } else {
     iOpenMenu.className = 'fa fa-bars';
-    sideMenu.style.transform = 'translateX(-250px)';
+    sideMenu.style.transform = `translateX(-${width}px)`;
   }
 }
 

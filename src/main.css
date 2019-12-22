@@ -317,12 +317,23 @@ nav {
       grid-template-columns: 100%;
   }
 
+  header {
+    position: fixed;
+    background: white;
+    top: 0;
+    z-index: 25;
+  }
+
+  #project__list {
+    margin-top: 87px;
+  }
+
   .sidemenu {
     position: fixed;
+    top: 87px;
     width: 80%;
     background: white;
     z-index: 20;
-    transform: translateX(-250px);
     transition: transform 0.7s ease-in-out;
   }
 
