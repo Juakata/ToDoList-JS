@@ -1,6 +1,6 @@
 # ToDoList-JS
 
-> This project is a Todo List built with JavaScript. You can add projects and in each project you can add several tasks that have a priority, dueDate, title and description.
+> This project is a To-Do List app built with JavaScript. You can add projects and tasks, and then label them with a priority level, due date, title, and description.
 
 ![library](https://user-images.githubusercontent.com/11781597/71129502-362df480-21b5-11ea-8f7e-cc78d4383143.png)
 
@@ -31,19 +31,24 @@ npx webpack
 ```
 3. Open index.html in your browser.
 
+## Future Features
+
+- User accounts.
+- Implementation of a remote database with Ruby on Rails.
+
 ## Authors
 
 👤 **Andoni Uzquiano**
 
 - Github: [@Juakata](https://github.com/Juakata)
 - Twitter: [@HUzquiano](https://twitter.com/HUzquiano)
-- Linkedin: [linkedin](https://www.linkedin.com/in/andoni-uzquiano-31304818a/)
+- Linkedin: [@Andoni](https://www.linkedin.com/in/andoni-uzquiano-31304818a/)
 
 👤 **Rodolfo Cisneros**
 
 - Github: [@rociac](https://github.com/rociac)
 - Twitter: [@AcostaRca](https://twitter.com/AcostaRca)
-- Linkedin: [linkedin](https://www.linkedin.com/in/rociac/)
+- Linkedin: [@Rodolfo](https://www.linkedin.com/in/rociac/)
 
 ## 🤝 Contributing
 
@@ -57,4 +62,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MiT](https://opensource.org/licenses/MIT) licensed.
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
