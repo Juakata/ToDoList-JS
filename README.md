@@ -1,6 +1,6 @@
 # ToDoList-JS
 
-> This project is a To-Do List app built mainly with JavaScript. You can add projects and tasks, and then label them with a priority level, due date, title, and description. The website works on desktop and mobile devices, any data is saved in the browser cache using localStorage functionality.
+> This project is a To-Do List app built mainly with JavaScript. You can add projects and tasks, and then label them with a priority level, due date, title, and description. The website works on desktop and mobile devices; data is saved in the browser cache using localStorage.
 
 ![library](https://user-images.githubusercontent.com/11781597/71129502-362df480-21b5-11ea-8f7e-cc78d4383143.png)
 
